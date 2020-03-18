@@ -1,0 +1,33 @@
+$background: #F5F7FB;
+
+.main-wrapper {
+  display: -webkit-flex;
+  display: flex;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: $background;
+  width: 100%;
+}
+
+.main-wrapper .page-wrapper {
+  min-height: 100vh;
+  background: $background;
+  width: calc(100% - 320px);
+  margin-left: 320px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-transition: margin .1s ease,width .1s ease;
+  transition: margin .1s ease,width .1s ease;
+}
+
+.sidebar-folded .page-wrapper {
+  width: calc(100% - 70px);
+  margin-left: 70px;
+}
+
+.page-wrapper{
+  padding: 40px 40px;
+}

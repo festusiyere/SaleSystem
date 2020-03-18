@@ -1,0 +1,29 @@
+<nav class="sidebar">
+
+  <div class="_head">
+    <a href="" [routerLink]="['/']" >
+      <div class="logo">
+        <img src="assets/images/logo.png" alt="Logo">
+        <div> Fes </div>
+      </div>
+    </a>
+  </div>
+
+  <ul class="navlinks">
+    <li>
+      <a [routerLink]="['/']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" class="nav">
+        Dashboard
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
+        Add Product
+      </a>
+    </li>
+    <li>
+      <a [routerLink]="['/makesale']" routerLinkActive="nav-active" class="nav">
+        Make Sale
+      </a>
+    </li>
+  </ul>
+</nav>

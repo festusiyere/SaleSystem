@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700|Open+Sans:400,600,700&display=swap');
+
+// font-family: 'Merriweather Sans', sans-serif;
+// font-family: 'Open Sans', sans-serif;
+
+html, body {
+  color: #3D4D6A;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+a{
+  color: #3D4D6A;
+
+  &:hover, &:active{
+    color: #182742;
+  }
+}
