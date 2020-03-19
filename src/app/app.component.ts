@@ -7,10 +7,10 @@ import * as Feather from 'feather-icons';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'SaleSystem';
+  title = 'Fes - Home';
 
   ngAfterViewInit(): void {
     Feather.replace();
   }
-  
+
 }

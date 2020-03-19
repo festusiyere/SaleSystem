@@ -1,43 +1,50 @@
-<br>
-<div class="columns is-mobile is-vcentered is-centered">
-  <div class="column is-four-fifths">
-    <div class="box">
-      <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control">
-            <input class="input" ngModel required name="name" type="text" placeholder="Enter Name of Product">
-          </div>
-          <p class="help">This is a help text</p>
-        </div>
-        <div class="field">
-          <label class="label">Cost</label>
-          <div class="control">
-            <input class="input" ngModel required name="cost" type="text" placeholder="Cost of Product">
-          </div>
-          <p class="help">This is a help text</p>
-        </div>
-        <div class="field">
-          <label class="label">Quantity</label>
-          <div class="control">
-            <input class="input" ngModel required name="quantity" type="text" placeholder="Quantity">
-          </div>
-          <p class="help">This is a help text</p>
-        </div>
-        <div class="field is-grouped is-grouped-right">
-          <p class="control">
-            <button type="submit" class="button is-link">
-              Save
-            </button>
-          </p>
-          <p class="control">
-            <a class="button is-light">
-              Cancel
-            </a>
-          </p>
-        </div>
-      </form>
-    </div>
+<div class="header">
+  <div class="title">
+    Add Product
   </div>
+  <app-top-bar></app-top-bar>
 </div>
 
+<div class="card-container">
+  <form (ngSubmit)="onSubmit()" #form="ngForm">
+    <div class="field">
+      <label class="label">Name</label>
+      <div class="control">
+        <input autocomplete="off" class="input" ngModel #name="ngModel" required name="name" type="text" placeholder="Enter Name of Product">
+      </div>
+      <p class="help" *ngIf="!name.valid && name.touched">Enter Product Name</p>
+    </div>
+    <div class="field">
+      <label class="label">Cost</label>
+      <div class="control">
+        <input autocomplete="off" class="input" ngModel #cost="ngModel" required name="cost" type="text" placeholder="Cost of Product">
+      </div>
+      <p class="help" *ngIf="!cost.valid && cost.touched">Enter Cost</p>
+    </div>
+    <div class="field">
+      <label class="label">Quantity</label>
+      <div class="control">
+        <input autocomplete="off" class="input" ngModel #quantity="ngModel" required name="quantity" type="text" placeholder="Quantity">
+      </div>
+      <p class="help" *ngIf="!quantity.valid && quantity.touched">Enter Quantity</p>
+    </div>
+    <div class="field">
+      <label class="label">Unit</label>
+      <div class="control">
+        <select name="unit" class="form-control" required ngModel #unit="ngModel">
+          <option value="" selected> Select Unit</option>
+          <option *ngFor="let item of units" [value]="item">{{item}}</option>
+        </select>
+      </div>
+      <p class="help" *ngIf="!unit.valid && unit.touched">Select Unit</p>
+    </div>
+    <div class="field is-grouped is-grouped-right">
+      <button type="submit" class="" [disabled] ="!form.valid">
+        Save
+      </button>
+      <a class="button danger" [routerLink]="['/']" >
+        Cancel
+      </a>
+    </div>
+  </form>
+</div>

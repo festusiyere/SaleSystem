@@ -1,8 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './Shared/shared.module';
+
 import { AppComponent } from './app.component';
 import { MakeSaleComponent } from './make-sale/make-sale.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -24,7 +25,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

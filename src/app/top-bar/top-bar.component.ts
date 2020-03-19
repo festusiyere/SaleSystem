@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as Feather from 'feather-icons';
 
 
@@ -7,10 +7,15 @@ import * as Feather from 'feather-icons';
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.scss']
 })
-export class TopBarComponent implements OnInit{
+export class TopBarComponent implements OnInit, AfterViewInit{
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  ngAfterViewInit(): void {
+    Feather.replace();
+  }
 }
+

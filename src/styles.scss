@@ -1,14 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700|Open+Sans:400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
 
 // font-family: 'Merriweather Sans', sans-serif;
-// font-family: 'Open Sans', sans-serif;
+// font-family: 'Handlee', cursive;
+
+// Notifier Custom CSS
+@import "~angular-notifier/styles";
 
 html, body {
   color: #3D4D6A;
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  text-align: left;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+*, ::after, ::before {
+  outline: none !important;
+  box-sizing: border-box;
 }
 
 a{
@@ -17,4 +29,183 @@ a{
   &:hover, &:active{
     color: #182742;
   }
+}
+
+input, .form-control {
+  display: block;
+  width: 100%;
+  padding: .5rem 1rem;
+  line-height: 1;
+  color: #3D4D6A;
+  background-color: #fff;
+  background-clip: padding-box;
+  transition: border-color .3s ease-in-out;
+  font-weight: 600;
+  border: solid 1.7px #DCDEE3;
+  border-radius: 4px;
+  height: 2.8rem;
+
+
+  &::placeholder{
+    font-weight: 600;
+    color: rgb(209, 209, 209);
+  }
+
+  &:focus{
+    outline: none;
+    border-color: #3D4D6A;
+  }
+}
+
+button{
+  height: 2.5rem;
+  padding: 3px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFE379;
+  color: #3D4D6A;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+
+  &:hover{
+    color: #182742;
+    background-color: #FFE379;
+    outline: none;
+    box-shadow:0px 10px 13px -7px #d9c169;
+  }
+
+  &:active{
+    outline: none;
+  }
+}
+
+button, input {
+  overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.button{
+  height: 2.5rem;
+  padding: 3px 25px;
+  border: none;
+  border-radius: 5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFE379;
+  color: #3D4D6A;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 2rem;
+
+  &:hover{
+    color: #182742;
+    background-color: #FFE379;
+    outline: none;
+    box-shadow:0px 10px 13px -7px #e2ca73;
+  }
+
+  &:active{
+    outline: none;
+  }
+}
+
+.danger{
+  background: #F5F7FB !important;
+  color: #182742;
+
+  &:hover{
+    color: #182742;
+    background-color: #FFE379;
+    outline: none;
+    box-shadow:0px 10px 13px -7px #dbdbdb;
+  }
+
+}
+
+.header{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  .title{
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.card-container {
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow:0px 2px 4px #e7eaeefa;
+}
+
+.help{
+  font-family: 'Handlee', cursive;
+  font-size: 14px;
+  color: #ff5151 !important;
+  margin-top: 10px;
+  -webkit-animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+}
+
+@-webkit-keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes text-focus-in {
+  0% {
+    -webkit-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+label {
+  display: inline-block;
+  margin-bottom: .5rem;
+  box-sizing: border-box;
+}
+
+button[disabled]{
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.field
+{
+  margin-bottom: 1rem;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched{
+  border-color: #ff5151;
 }
