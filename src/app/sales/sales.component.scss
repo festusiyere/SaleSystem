@@ -1,8 +1,8 @@
-.main-layout{
+.main-layout {
   display: flex;
   flex-flow: row nowrap;
 
-  .main{
+  .main {
     flex: 0 0 70%;
     width: 70%;
     max-width: 70%;
@@ -10,30 +10,28 @@
     padding-right: 8px;
     box-sizing: border-box;
 
-    .item{
+    .item {
       margin-bottom: 10px;
 
-      ._jd{
-
-        h2{
+      ._jd {
+        h2 {
           font-size: 24px;
           line-height: 30px;
           margin-top: 0;
           margin-bottom: 20px;
         }
 
-        .j_e{
-          opacity: .5;
+        .j_e {
+          opacity: 0.5;
           border-radius: 2px;
           margin-bottom: 15px;
           font-size: 13px;
         }
-
       }
     }
   }
 
-  .side{
+  .side {
     flex: 0 0 30%;
     width: 30%;
     max-width: 30%;
@@ -44,11 +42,86 @@
   }
 }
 
-.add{
+.add {
   display: flex;
   padding: 20px 0;
 
-  button{
+  button {
     margin-left: auto;
   }
+}
+
+.side-total {
+  .card-container {
+    // padding-top: 10px;
+  }
+
+  ._sid {
+    margin-bottom: 20px;
+
+    h2 {
+      font-size: 24px;
+      line-height: 30px;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+  }
+
+  ._sdeta {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 20px;
+
+    ._dk {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .pro_d {
+        text-align: left;
+      }
+
+      ._pro_pr {
+        text-align: right;
+      }
+    }
+  }
+
+  .pay {
+    .tt_ot {
+      .tti {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        margin-top: 15px;
+
+        .fur {
+          font-weight: 600;
+          text-align: left;
+          font-size: 18px;
+        }
+
+        .fke {
+          font-size: 26px;
+          font-weight: 600;
+          text-align: right;
+        }
+      }
+    }
+
+    ._pa {
+      button {
+        display: block;
+        width: 100%;
+        height: 3.5rem;
+      }
+    }
+  }
+}
+
+.fixed {
+  position: fixed !important;
+  top: 16px;
+  z-index: 1;
 }
