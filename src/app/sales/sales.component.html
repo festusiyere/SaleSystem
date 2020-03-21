@@ -1,1 +1,48 @@
-<p>sales works!</p>
+<div class="header">
+  <div class="title">
+    Sales
+  </div>
+  <app-top-bar></app-top-bar>
+</div>
+
+<div class="main-layout">
+
+  <div class="main">
+    <div class="card-container item">
+      <div class="_jd">
+        <h2>
+          Client Cart ({{numbers}})
+        </h2>
+
+        <div class="j_e">
+          {{date | date: 'medium'}}
+        </div>
+
+        <div class="checkbox">
+          <input id="c1" type="checkbox">
+          <label for="c1">Select All</label>
+        </div>
+      </div>
+
+    </div>
+
+    <app-sale *ngFor="let item of cart; index as i"></app-sale>
+
+    <div class="add">
+      <button (click)="addSale()">
+        Add
+      </button>
+    </div>
+
+  </div>
+
+  <div class="side">
+    <div class="side-total">
+      <div class="card-container">
+        <div  class="_jd">
+          <h2 _ngcontent-wvi-c54=""> Client Cart (1) </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

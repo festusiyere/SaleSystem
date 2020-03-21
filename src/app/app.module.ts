@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { SalesComponent } from './sales/sales.component';
 import { ProductComponent } from './product/product.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { SaleComponent } from './sale/sale.component';
+import { TotalComponent } from './total/total.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     HomeComponent,
     SalesComponent,
     ProductComponent,
-    TopBarComponent
+    TopBarComponent,
+    SaleComponent,
+    TotalComponent
   ],
   imports: [
     BrowserModule,

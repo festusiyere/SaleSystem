@@ -40,3 +40,13 @@ export const customNotifierOptions: NotifierOptions = {
     overlap: 150
   }
 };
+
+export const progressBar = {
+  trickleSpeed: 200,
+  min: 20,
+  meteor: true,
+  color: '#FEB833',
+  spinner: false,
+  thick: true
+
+}

@@ -4,7 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NotifierModule } from 'angular-notifier';
-import { customNotifierOptions } from '../interfaces/notifier';
+import { NgProgressModule } from 'ngx-progressbar';
+import { NgProgressHttpModule } from 'ngx-progressbar/http';
+import { NgProgressRouterModule } from 'ngx-progressbar/router';
+
+import { customNotifierOptions, progressBar } from '../interfaces/notifier';
 
 
 @NgModule({
@@ -14,11 +18,17 @@ import { customNotifierOptions } from '../interfaces/notifier';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    NotifierModule.withConfig(customNotifierOptions)
+    NotifierModule.withConfig(customNotifierOptions),
+    NgProgressModule.withConfig(progressBar),
+    NgProgressHttpModule,
+    NgProgressRouterModule
   ],
   exports: [
     FormsModule,
-    NotifierModule
+    NotifierModule,
+    NgProgressModule,
+    NgProgressHttpModule,
+    NgProgressRouterModule
   ]
 })
 
