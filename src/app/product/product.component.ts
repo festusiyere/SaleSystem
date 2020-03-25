@@ -45,10 +45,6 @@ export class ProductComponent implements OnInit {
 
     this.product = this.form.value;
 
-    this.product.cost = +(this.product.cost) as number;
-
-    this.product.quantity = +(this.product.quantity) as number;
-
     this.productService.saveProduct(this.product).subscribe(
       data => {
         this.showSuccessNotification(this.product.name + ' Product Created');

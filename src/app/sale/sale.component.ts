@@ -1,109 +1,196 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ComponentRef, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Product } from '../interfaces/product';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
+import { CartService } from '../services/cart.service';
+import { Cart } from '../interfaces/cart';
 
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
   styleUrls: ['./sale.component.scss']
 })
-export class SaleComponent implements OnInit, AfterViewInit {
+export class SaleComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild('form', { static: true }) form: NgForm;
-  @ViewChild('disc', { static: false }) disc: NgForm;
-  @ViewChild('qty', { static: false }) qty: NgForm;
+  @ViewChild('name', { static: true }) name: NgModel;
+  @ViewChild('disc', { static: true }) disc: NgModel;
+  @ViewChild('qty', { static: true }) qty: NgModel;
 
+  // Product Array passed from parent
+  @Input() Products: Product[] = [];
+  @Input() index: number;
+
+  // Show Discounted Data
+  toggle = false;
+
+
+  // Actual Product Data
+  selectedProduct: Product;
+  productSet = false;
+
+
+  // Dummy Product Data
+  dummy: Product = {
+    id: null,
+    unique_id: null,
+    name: null,
+    details: 'Please Select Product',
+    cost: 0,
+    price: 0,
+    quantity: 0,
+    unit: 'Unit'
+  };
+
+  // Product Data Being Displayed
   product: Product;
+
+  // Properties for computations
   discountSet: boolean;
-  discount: number;
-  quantity: number;
+  discount: number = null;
+  quantity = 0;
   total: number;
   discountPrice: number;
 
-  dummy: Product = {
-    name: 'Rice',
-    details: 'Derika Rice 500kg made in thailand',
-    cost: 5000,
-    price: 5500,
-    quantity: 20,
-    unit: 'Bags',
-    code: '1412-3482-8472-3'
-  };
 
+  constructor(private cartService: CartService) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.setQuantity();
-    this.setTotal();
+  ngOnChanges(changes: SimpleChanges): void {
+    this.Products = changes.Products.currentValue || null;
   }
 
-  ngAfterViewInit(): void {
-    this.form.valueChanges.subscribe(
+  ngOnInit(): void {
+
+    // setting the initial product to the dummy product
+    this.product = this.dummy;
+    this.setQuantity();
+    this.setTotal();
+
+    // Subscribing for the change in product so as to populate the fields
+    this.name.valueChanges.subscribe(
+      (changes) => {
+        if (changes !== null) {
+
+          // if the change contains a value
+          const list = this.Products;
+          const index: number = +changes;
+
+          // Setting Product to True and finding the Object with the id of the selected produt
+          this.productSet = true;
+          const result = list.find((word) => word.id === index);
+
+          // Setting the result to be the Product
+          this.product = result;
+
+          // Setting the result and Quantity
+          this.setQuantity();
+          this.setTotal();
+
+        } else {
+          this.productSet = false;
+          this.product = this.dummy;
+        }
+      }
+    );
+
+    this.disc.valueChanges.subscribe(
       () => {
         this.setTotal();
         this.discountCheck();
       }
     );
+
+    this.qty.valueChanges.subscribe(
+      () => {
+        this.setTotal();
+        this.discountCheck();
+      }
+    );
+
+  }
+
+  ngAfterViewInit(): void {
   }
 
   setTotal(): void {
-    this.total = this.quantity * this.dummy.price;
+    if (this.productSet) {
+      if (this.discountSet) {
+        this.total = this.quantity * this.discountPrice;
+      } else {
+        this.total = this.quantity * this.product.price;
+      }
+      const value: Cart = {index: this.index, product: this.product, quantity: this.quantity, discount: this.discount, total: this.total };
+      if (this.productSet) {
+        this.cartService.addToCart.next(value);
+      }
+    } else {
+      this.total = 0;
+    }
   }
 
-  setQuantity(): void  {
-    if (this.dummy.quantity > 1) {
+  setQuantity(): void {
+    if (this.product.quantity > 1) {
       this.quantity = 1;
     } else {
       this.quantity = 0;
     }
   }
 
-  decrementCount(): void  {
+  decrementCount(): void {
     if (this.quantity > 1) {
       this.quantity--;
     }
   }
 
   reset(): void {
-    this.quantity = 1;
-    this.discount = null;
+    if (this.productSet) {
+      this.quantity = 1;
+      this.discount = null;
+    }
   }
 
-  incrementCount(): void  {
-    if (this.quantity < this.dummy.quantity) {
+  incrementCount(): void {
+    if (this.quantity < this.product.quantity) {
       this.quantity++;
     }
   }
 
-  qtyCheck(): void  {
-    if (this.quantity > this.dummy.quantity) {
-      this.quantity = this.dummy.quantity;
+  qtyCheck(): void {
+    this.setTotal();
+    if (this.quantity > this.product.quantity) {
+      this.quantity = this.product.quantity;
     }
   }
 
-  blurCheck(): void{
-    if(this.quantity == null){
-      this.quantity = 1;
-    }
-  }
-
-  discountCheck(): void  {
-    if (this.discount > 100) {
-      this.discount = 100;
-    }
-    if (this.discount < 0) {
-      this.discount = 0;
-    }
-    if (this.discount != null) {
-      this.discountPrice = this.dummy.price - (+(this.dummy.price * (this.discount / 100)).toFixed(2));
-      this.discountSet = true;
+  blurCheck(): void {
+    if (this.productSet) {
+      if (this.quantity == null) {
+        this.quantity = 1;
+      }
     } else {
-      this.discountSet = false;
+      this.quantity = 0;
     }
   }
 
-  destroy() {
-    console.log(this);
+  discountCheck(): void {
+    if (this.productSet) {
+      if (this.discount > 100) {
+        this.discount = 100;
+      }
+      if (this.discount < 0) {
+        this.discount = 0;
+      }
+      if (this.discount != null) {
+        this.discountPrice = this.product.price - (+(this.product.price * (this.discount / 100)).toFixed(2));
+        this.discountSet = true;
+        this.setTotal();
+      } else {
+        this.discountSet = false;
+        this.setTotal();
+      }
+    }
+  }
+
+  remove() {
+    this.cartService.deleteCart.next(this.index);
   }
 }

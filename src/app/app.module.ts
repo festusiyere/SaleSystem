@@ -13,6 +13,8 @@ import { ProductComponent } from './product/product.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { SaleComponent } from './sale/sale.component';
 import { TotalComponent } from './total/total.component';
+import { DiscountDirective } from './directives/discount.directive';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -24,14 +26,18 @@ import { TotalComponent } from './total/total.component';
     ProductComponent,
     TopBarComponent,
     SaleComponent,
-    TotalComponent
+    TotalComponent,
+    DiscountDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    CartService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [SaleComponent]
 })
 export class AppModule { }

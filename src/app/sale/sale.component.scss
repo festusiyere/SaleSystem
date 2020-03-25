@@ -19,7 +19,6 @@
 
 .pro-body{
   display: flex;
-  // padding: 10px 0 15px;
 
   ._det{
 
@@ -194,7 +193,6 @@
   padding-top: 5px;
   margin-top: 5px;
 
-
 ._pfor{
   display: flex;
   align-items: center;
@@ -207,6 +205,7 @@
 
       svg{
         width: 8px;
+        transform: rotate(-90deg);
       }
     }
   }
@@ -219,7 +218,7 @@
 
 .dis_inp{
   padding: 5px 10px;
-  display: inline-flex;
+  display: none;
   align-items: center;
   font-weight: 600;
   font-size: 20px;
@@ -239,10 +238,6 @@
       border: 0px solid #3d4d6a;
     }
 
-    // &:valid{
-    //   border: none;
-    // }
-    
   }
 
   span{
@@ -264,4 +259,37 @@
 
 .item{
   margin-bottom: 10px;
+}
+
+.pro-footer.show {
+  .dis{
+    span:nth-child(2){
+      svg{
+        width: 8px;
+        transform: rotate(0deg) !important;
+      }
+    }
+  }
+}
+
+.pro-footer.show {
+  .dis_inp{
+    display: inline-flex;
+  }
+}
+.select{
+  border: solid 1px #BBC1E1;
+  border-radius: 7px;
+
+}
+
+.select option {
+  font-weight:normal;
+}
+
+.select.ng-valid{
+  border: none;
+}
+.red-text{
+  color: #ff5a5a;
 }

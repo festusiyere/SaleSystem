@@ -9,11 +9,11 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
 
 import { customNotifierOptions, progressBar } from '../interfaces/notifier';
+import { CartService } from '../services/cart.service';
 
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [ ],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,7 +28,7 @@ import { customNotifierOptions, progressBar } from '../interfaces/notifier';
     NotifierModule,
     NgProgressModule,
     NgProgressHttpModule,
-    NgProgressRouterModule
+    NgProgressRouterModule,
   ]
 })
 

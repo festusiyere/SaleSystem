@@ -10,21 +10,38 @@
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #name="ngModel" required name="name" type="text" placeholder="Enter Name of Product">
+        <input autocomplete="off" class="input" ngModel #name="ngModel" required name="name" type="text" placeholder="Display Name of Product">
       </div>
       <p class="help" *ngIf="!name.valid && name.touched">Enter Product Name</p>
     </div>
     <div class="field">
+      <label class="label">Product Details</label>
+      <div class="control">
+        <textarea autocomplete="off" class="input" ngModel #details="ngModel" required name="details" type="text" placeholder="Enter details of Product">
+
+        </textarea>
+      </div>
+      <p class="help" *ngIf="!details.valid && details.touched">Enter your Product Details</p>
+    </div>
+
+    <div class="field">
       <label class="label">Cost</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #cost="ngModel" required name="cost" type="text" placeholder="Cost of Product">
+        <input autocomplete="off" class="input" ngModel #cost="ngModel" required name="cost" type="number" placeholder="Cost of Product">
       </div>
-      <p class="help" *ngIf="!cost.valid && cost.touched">Enter Cost</p>
+      <p class="help" *ngIf="!cost.valid && cost.touched">Enter the Cost Price</p>
+    </div>
+    <div class="field">
+      <label class="label">Price</label>
+      <div class="control">
+        <input autocomplete="off" class="input" ngModel #price="ngModel" required name="price" type="number" placeholder="Selling Price of Product">
+      </div>
+      <p class="help" *ngIf="!price.valid && price.touched">Enter your Selling Price</p>
     </div>
     <div class="field">
       <label class="label">Quantity</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #quantity="ngModel" required name="quantity" type="text" placeholder="Quantity">
+        <input autocomplete="off" class="input" ngModel #quantity="ngModel" required name="quantity" type="number" placeholder="Quantity">
       </div>
       <p class="help" *ngIf="!quantity.valid && quantity.touched">Enter Quantity</p>
     </div>

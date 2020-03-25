@@ -19,4 +19,12 @@ export class ProductService {
     return this.http.post<Product>('/api/product', product);
   }
 
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>('/api/product');
+  }
+
+  saveSale(data): Observable<any> {
+    return this.http.post<any>('/api/sale', data);
+  }
+
 }
