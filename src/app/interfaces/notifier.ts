@@ -45,8 +45,8 @@ export const progressBar = {
   trickleSpeed: 200,
   min: 20,
   meteor: true,
-  color: '#FEB833',
+  color: '#fc4a1a',
   spinner: false,
-  thick: true
+  thick: false
 
 }

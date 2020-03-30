@@ -414,3 +414,9 @@ input.ng-invalid.ng-touched, select.ng-invalid.ng-touched, textarea.ng-invalid.n
   font-weight:normal;
   font-size: 1rem;
 }
+
+select[disabled]{
+  cursor: not-allowed;
+  background-color: rgb(241, 241, 241);
+  opacity: .7;
+}

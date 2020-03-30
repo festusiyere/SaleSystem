@@ -2,12 +2,15 @@ import {
   Component, OnInit, ViewChild, ElementRef, HostListener, ViewChildren,
   QueryList, AfterViewInit, ChangeDetectorRef, AfterContentChecked
 } from '@angular/core';
+import {  NgProgress } from 'ngx-progressbar';
+import { NotifierService } from 'angular-notifier';
+
 import { SaleComponent } from '../sale/sale.component';
 import { Cart } from '../interfaces/cart';
 import { Product } from '../interfaces/product';
 import { ProductService } from '../services/product.service';
 import { CartService } from './../services/cart.service';
-import { Record } from './../interfaces/record';
+import { Record, Details } from './../interfaces/record';
 
 @Component({
   selector: 'app-sales',
@@ -17,7 +20,8 @@ import { Record } from './../interfaces/record';
 export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecked {
 
 
-  constructor(private product: ProductService, private cdr: ChangeDetectorRef, private cartService: CartService) { }
+  constructor(private product: ProductService, private cdr: ChangeDetectorRef, private cartService: CartService,
+              private notifier: NotifierService, private progress: NgProgress) { }
 
   @ViewChild('sidetotal', { static: true }) total: ElementRef;
   @ViewChildren(SaleComponent) sales: QueryList<SaleComponent>;
@@ -66,7 +70,9 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
       (result) => {
         this.products = result;
       },
-      (error) => console.log(error)
+      (error) => {
+        this.notifier.notify('error', error.message);
+      }
     );
 
   }
@@ -74,12 +80,14 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   ngAfterViewInit(): void {
     this.cartService.addToCart.subscribe(
       (val) => {
-        console.log(val);
+
         const item = this.cartDetails.find((value) => value.index === val.index);
+
         if (item === undefined) {
           this.cartDetails.push(val);
         } else {
-          this.cartDetails.splice(val.index, 1, val);
+          const index = this.cartDetails.indexOf(item);
+          this.cartDetails.splice(index, 1, val);
         }
         this.sumTotal();
       }
@@ -116,28 +124,47 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   }
 
   sell(): void {
-    console.log(this.cartDetails);
-    const a = {
-      details: [
-          {
-              product: 'Rice',
-              price: 300
-          },
-          {
-              product: 'Beans',
-              price: 200
-          },
-          {
-              product: 'Yam',
-              price: 800
-          }
-      ],
-      total: 50000,
-    };
 
-    // this.product.saveSale(a).subscribe(
-    //   (result) => console.log(result)
-    // );
+    const detail = [];
+    const array: any = this.cartDetails;
+
+    for (const item of array) {
+      const newData: any = new Object();
+      newData.id = item.product.id;
+      newData.name = item.product.name;
+      newData.price = item.product.price;
+      newData.quantity = item.quantity;
+      newData.discount = item.discount === null ? 0 : item.discount;
+      newData.total = item.total;
+      detail.push(newData);
+    }
+
+    const data: Record = {
+      details : detail,
+      total: this.grandTotal
+    }
+
+    this.product.saveSale(data).subscribe(
+      (result) => {
+        this.showSuccessNotification('Sold');
+        this.numbers = 1;
+        this.cart.length = 1;
+        this.cartDetails.length = 0;
+        this.sumTotal();
+      },
+      (error) => {
+        this.showErrorNotification(error.message);
+      }
+    );
   }
+
+  public showSuccessNotification(message: string): void {
+    this.notifier.notify('success', message);
+  }
+
+  public showErrorNotification(message: string): void {
+    this.notifier.notify('error', message);
+  }
+
 
 }

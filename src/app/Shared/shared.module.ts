@@ -9,7 +9,6 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
 
 import { customNotifierOptions, progressBar } from '../interfaces/notifier';
-import { CartService } from '../services/cart.service';
 
 
 @NgModule({

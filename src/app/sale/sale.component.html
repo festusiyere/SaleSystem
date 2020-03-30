@@ -7,7 +7,7 @@
         <input name="checkbox" type="checkbox">
       </div>
       <div>
-        <select class="select" name="name" [ngModel]="product.id" #name="ngModel" required>
+        <select class="select" [disabled]="true" name="name" [ngModel]="product.id"  #name="ngModel" required>
           <option disabled [ngValue]="null">Select Product</option>
           <option *ngFor="let item of Products" [value]="item.id">{{item.name}}</option>
         </select>

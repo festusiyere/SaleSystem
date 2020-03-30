@@ -3,7 +3,7 @@ export interface Record {
   total: number;
 }
 
-interface Details{
+export interface Details{
   id: number;
   name: string;
   price: string;
