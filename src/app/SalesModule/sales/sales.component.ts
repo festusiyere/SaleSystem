@@ -2,15 +2,15 @@ import {
   Component, OnInit, ViewChild, ElementRef, HostListener, ViewChildren,
   QueryList, AfterViewInit, ChangeDetectorRef, AfterContentChecked
 } from '@angular/core';
-import {  NgProgress } from 'ngx-progressbar';
 import { NotifierService } from 'angular-notifier';
+import { SharedModule } from './../../Shared/shared.module';
 
 import { SaleComponent } from '../sale/sale.component';
-import { Cart } from '../interfaces/cart';
-import { Product } from '../interfaces/product';
-import { ProductService } from '../services/product.service';
-import { CartService } from './../services/cart.service';
-import { Record, Details } from './../interfaces/record';
+import { Cart } from '../../Shared/interfaces/cart';
+import { Product } from '../../Shared/interfaces/product';
+import { ProductService } from '../../Shared/services/product.service';
+import { CartService } from '../../Shared/services/cart.service';
+import { Record } from '../../Shared/interfaces/record';
 
 @Component({
   selector: 'app-sales',
@@ -21,18 +21,22 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
 
   constructor(private product: ProductService, private cdr: ChangeDetectorRef, private cartService: CartService,
-              private notifier: NotifierService, private progress: NgProgress) { }
+              private notifier: NotifierService) { }
 
   @ViewChild('sidetotal', { static: true }) total: ElementRef;
+  @ViewChild('container', { static: true }) container: ElementRef;
   @ViewChildren(SaleComponent) sales: QueryList<SaleComponent>;
 
   // Products from server
-  products: Product[];
+  products: Product[] = [];
 
   // Styling properties for the component
   menuPosition: number;
   sticky = false;
   date: Date;
+
+  // Mutation Observer
+  private mutationObserver: MutationObserver;
 
   // Grand Total
   grandTotal = 0.00;
@@ -55,6 +59,9 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   }
 
   ngOnInit(): void {
+    // console.log((this.document.body.classList));
+    // console.log(this.container);
+
 
     // Gettin Current Date
     this.date = new Date();
@@ -66,15 +73,7 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
     this.menuPosition = this.total.nativeElement.getBoundingClientRect().top;
 
     // API Call for Products
-    this.product.getAllProducts().subscribe(
-      (result) => {
-        this.products = result;
-      },
-      (error) => {
-        this.notifier.notify('error', error.message);
-      }
-    );
-
+    this.getData();
   }
 
   ngAfterViewInit(): void {
@@ -102,6 +101,17 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
   ngAfterContentChecked(): void {
     this.cdr.detectChanges();
+  }
+
+  getData(): void {
+    this.product.getAllProducts().subscribe(
+      (result) => {
+        this.products = result;
+      },
+      (error) => {
+        this.notifier.notify('error', error.message);
+      }
+    );
   }
 
   addSale() {
@@ -146,11 +156,16 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
     this.product.saveSale(data).subscribe(
       (result) => {
-        this.showSuccessNotification('Sold');
+        this.cartDetails = [];
         this.numbers = 1;
-        this.cart.length = 1;
-        this.cartDetails.length = 0;
+        this.cart = [];
         this.sumTotal();
+        this.getData();
+        this.showSuccessNotification('Sold');
+        this.cart.length = 0;
+        setTimeout(() => {
+          this.cart.length = 1;
+        }, 1);
       },
       (error) => {
         this.showErrorNotification(error.message);

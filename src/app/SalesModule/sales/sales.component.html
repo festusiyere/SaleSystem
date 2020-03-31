@@ -7,7 +7,7 @@
 
 <div class="main-layout">
 
-  <div class="main">
+  <div class="main" #container>
     <div class="card-container item">
       <div class="_jd">
         <h2>
@@ -42,15 +42,7 @@
         <div  class="_sid">
           <h2> Sale Summary</h2>
         </div>
-        <div class="_sdeta">
-          <!-- <div class="_dk">
-            <div class="pro_d">
-              Derika Rice 500kg
-            </div>
-            <div class="_pro_pr">
-              $5500
-            </div>
-          </div> -->
+        <div class="_sdeta" >
           <div *ngFor="let item of sales" >
             <div class="_dk" *ngIf="item.productSet">
               <div class="pro_d">

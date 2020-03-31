@@ -1,8 +1,8 @@
 import { Component, ComponentRef, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Product } from '../interfaces/product';
+import { Product } from '../../Shared/interfaces/product';
 import { NgForm, NgModel } from '@angular/forms';
-import { CartService } from '../services/cart.service';
-import { Cart } from '../interfaces/cart';
+import { CartService } from '../../Shared/services/cart.service';
+import { Cart } from '../../Shared/interfaces/cart';
 
 @Component({
   selector: 'app-sale',

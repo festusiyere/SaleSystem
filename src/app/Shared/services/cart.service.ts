@@ -11,8 +11,4 @@ export class CartService {
   deleteCart = new Subject<number>();
 
   constructor() { }
-
-  console() {
-    // this.addToCart.next('hello');
-  }
 }

@@ -5,39 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './Shared/shared.module';
 
 import { AppComponent } from './app.component';
-import { MakeSaleComponent } from './make-sale/make-sale.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
-import { SalesComponent } from './sales/sales.component';
-import { ProductComponent } from './product/product.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { SaleComponent } from './sale/sale.component';
-import { TotalComponent } from './total/total.component';
-import { DiscountDirective } from './directives/discount.directive';
-import { CartService } from './services/cart.service';
+
+import { ProductModule } from './ProductModule/product.module';
+import { SalesModule } from './SalesModule/sales.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MakeSaleComponent,
     NavbarComponent,
     HomeComponent,
-    SalesComponent,
-    ProductComponent,
-    TopBarComponent,
-    SaleComponent,
-    TotalComponent,
-    DiscountDirective,
+    // TopBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    ProductModule,
+    SalesModule
   ],
-  providers: [
-    CartService
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [SaleComponent]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

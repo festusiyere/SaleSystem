@@ -1,4 +1,4 @@
-<div class="card-container item">
+<div class="card-container item collaps">
 
   <form #form="ngForm">
 
@@ -7,20 +7,12 @@
         <input name="checkbox" type="checkbox">
       </div>
       <div>
-        <select class="select" [disabled]="true" name="name" [ngModel]="product.id"  #name="ngModel" required>
+        <select class="select" [disabled]="!Products.length" name="name" [ngModel]="product.id"  #name="ngModel" required>
           <option disabled [ngValue]="null">Select Product</option>
           <option *ngFor="let item of Products" [value]="item.id">{{item.name}}</option>
         </select>
         <!-- Select Product -->
       </div>
-      <!-- <div class="total">
-        <span *ngIf="!discountSet">
-          ${{total}}
-        </span>
-        <span *ngIf="discountSet">
-          ${{discountPrice * quantity}}
-        </span>
-      </div> -->
       <div class="total">
         <span>
           ${{total}}

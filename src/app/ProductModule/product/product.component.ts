@@ -3,8 +3,8 @@ import { NgForm } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 
 
-import { Product } from './../interfaces/product';
-import { ProductService } from '../services/product.service';
+import { Product } from '../../Shared/interfaces/product';
+import { ProductService } from '../../Shared/services/product.service';
 import { NgProgressRef, NgProgress } from 'ngx-progressbar';
 
 @Component({
@@ -47,7 +47,7 @@ export class ProductComponent implements OnInit {
 
     this.productService.saveProduct(this.product).subscribe(
       data => {
-        this.showSuccessNotification(this.product.name + ' Product Created');
+        this.showSuccessNotification('Product Created');
         console.log(data);
         this.form.reset();
       },

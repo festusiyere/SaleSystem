@@ -15,10 +15,25 @@
         Dashboard
       </a>
     </li>
-    <li>
-      <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
+    <li style="border: solid red 2px;">
+      <!-- <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
         Add Product
+      </a> -->
+      <a routerLinkActive="nav-active" class="nav">
+        Product
       </a>
+      <ul class="navlink">
+        <li>
+          <a [routerLink]="['/product']" routerLinkActive="nav-active" class="nav">
+            Add Product
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
+            View Product
+          </a>
+        </li>
+      </ul>
     </li>
     <li>
       <a [routerLink]="['/sales']" routerLinkActive="nav-active" class="nav">
