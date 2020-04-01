@@ -15,30 +15,51 @@
         Dashboard
       </a>
     </li>
-    <li style="border: solid red 2px;">
-      <!-- <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
-        Add Product
-      </a> -->
-      <a routerLinkActive="nav-active" class="nav">
+    <li  [ngClass]="{'open': productShow}">
+      <a class="nav _jf" data-target="product" role="button" (click)="toggleProduct($event)">
         Product
+        <svg width="10" height="20" viewBox="0 0 64 99" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line y1="-4.5" x2="75.4155" y2="-4.5" transform="matrix(-0.755812 0.654789 -0.755812 -0.654789 57 43.6187)" stroke="white" stroke-width="15"/>
+          <line y1="-4.5" x2="75.4155" y2="-4.5" transform="matrix(0.755812 0.654789 -0.755812 0.654789 0 6)" stroke="white" stroke-width="15"/>
+        </svg>
       </a>
-      <ul class="navlink">
-        <li>
-          <a [routerLink]="['/product']" routerLinkActive="nav-active" class="nav">
-            Add Product
-          </a>
-        </li>
-        <li>
-          <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
-            View Product
-          </a>
-        </li>
-      </ul>
+      <div id="product" class="collapse" [ngClass]="{'show': productShow}">
+        <ul class="collapse-list">
+          <li>
+            <a [routerLink]="['/product']" routerLinkActive="nav-active" class="nav" id="product">
+              Add Product
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
+              View Product
+            </a>
+          </li>
+        </ul>
+      </div>
     </li>
-    <li>
-      <a [routerLink]="['/sales']" routerLinkActive="nav-active" class="nav">
-        Make Sale
+    <li  [ngClass]="{'open': salesShow}">
+      <a class="nav _jf" data-target="sale" role="button" (click)="toggleSale($event)">
+        Sale
+        <svg width="10" height="20" viewBox="0 0 64 99" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line y1="-4.5" x2="75.4155" y2="-4.5" transform="matrix(-0.755812 0.654789 -0.755812 -0.654789 57 43.6187)" stroke="white" stroke-width="15"/>
+          <line y1="-4.5" x2="75.4155" y2="-4.5" transform="matrix(0.755812 0.654789 -0.755812 0.654789 0 6)" stroke="white" stroke-width="15"/>
+        </svg>
       </a>
+      <div id="sale" class="collapse" [ngClass]="{'show': salesShow}">
+        <ul class="collapse-list">
+          <li>
+            <a [routerLink]="['/sales']" routerLinkActive="nav-active" class="nav" id="product">
+              Make Sales
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/addproduct']" routerLinkActive="nav-active" class="nav">
+              View Sales
+            </a>
+          </li>
+        </ul>
+      </div>
     </li>
   </ul>
 </nav>

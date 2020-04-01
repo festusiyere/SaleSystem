@@ -9,8 +9,8 @@ import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
 
 import { customNotifierOptions, progressBar } from './interfaces/notifier';
-import { DiscountDirective } from './directives/discount.directive';
 import { TopBarComponent } from '../top-bar/top-bar.component';
+import { DiscountDirective } from '../directives/discount.directive';
 
 
 @NgModule({
