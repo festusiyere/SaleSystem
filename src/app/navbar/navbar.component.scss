@@ -52,6 +52,8 @@ $color1: #FFE379;
     list-style-type: none;
     font-weight: bold;
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
     padding: 0;
     padding-right: 40px;
 
@@ -88,8 +90,8 @@ $color1: #FFE379;
         svg{
           margin-left: auto;
           margin-right: 20px;
-          transform: rotate(-90deg);
-          transition: transform 0.5s ease-in-out;
+          transform: rotate(0deg);
+          transition: transform 0.2s ease-in-out;
         }
 
         &.nav-active{
@@ -146,7 +148,10 @@ li.open{
     color: #fff;
 
     svg{
-      transform: rotate(90deg) !important;
+      transform: rotate(180deg) !important;
+      path{
+        stroke: #fff;
+      }
     }
   }
 

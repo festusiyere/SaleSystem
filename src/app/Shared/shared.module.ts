@@ -25,7 +25,7 @@ import { DiscountDirective } from '../directives/discount.directive';
     NotifierModule.withConfig(customNotifierOptions),
     NgProgressModule.withConfig(progressBar),
     NgProgressHttpModule,
-    NgProgressRouterModule
+    NgProgressRouterModule,
   ],
   exports: [
     TopBarComponent,

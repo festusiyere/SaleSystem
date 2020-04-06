@@ -1,0 +1,56 @@
+.table-container{
+  padding: 20px 20px;
+}
+
+.grid{
+  display: grid;
+  grid-template-columns: 3fr 2fr 1fr 2fr;
+  gap: 10px;
+  font-size: 1.2rem;
+}
+
+.al-r{
+  text-align: right;
+}
+
+.name{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.head{
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: .8rem;
+}
+
+._du{
+  border-bottom: 2px solid #F5F7FB;
+  margin-bottom: 5px;
+}
+
+.help{
+  font-weight: 1.2rem;
+  font-style: italic;
+}
+
+.tt{
+  grid-column: 4 / 5;
+  margin-top: 5px;
+  justify-self: end;
+  margin-bottom: 0;
+}
+
+.total{
+  text-align: right;
+  background-color: #fff;
+  border-radius: 7px;
+  padding: 20px 30px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  display: inline-block;
+}
+
+.grid:not(._du) div{
+  margin-bottom: 10px;
+}

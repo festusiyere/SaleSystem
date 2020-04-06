@@ -1,0 +1,95 @@
+<div class="header">
+  <app-top-bar style="margin-left: auto;"></app-top-bar>
+</div>
+
+<div class="main-layout">
+  <div class="table-header">
+    <div class="title">
+      Sales
+    </div>
+    <div class="je">
+      List of all Sale Made
+    </div>
+  </div>
+  <div class="table-container">
+    <ng-template [ngIf]="sales.length > 0">
+      <table>
+        <thead>
+          <th>
+            <div class="checkbox">
+              <input name="checkbox" type="checkbox">
+            </div>
+          </th>
+          <th style="padding-left: 30px;">
+            Ref-No
+          </th>
+          <th class="">
+            Date
+          </th>
+          <th class="al-r">
+            Total ($)
+          </th>
+          <th class="det">
+            Details
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of sales" class="table-row" [routerLink]="['/sales/view/'+item.id]">
+            <td class="xY">
+              <div class="checkbox">
+                <input name="checkbox" type="checkbox">
+              </div>
+            </td>
+            <td class="xY" style="padding-left: 30px;">
+              {{item.ref_no}}
+            </td>
+            <td class="xY">
+              {{item.created_at}}
+            </td>
+            <td class="xY al-r">
+              {{item.total}}
+            </td>
+            <td class="xY det">
+              <div class="ovr">
+                Name: {{item.details[0].name}}, &nbsp;Price: {{item.details[0].price}}, &nbsp;Quantity:
+                {{item.details[0].quantity}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-template>
+
+    <ng-template [ngIf]="sales.length == 0">
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+      <div class="h-2 w-100 loading">
+      </div>
+    </ng-template>
+
+  </div>
+</div>

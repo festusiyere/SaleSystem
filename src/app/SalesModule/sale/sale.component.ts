@@ -1,7 +1,7 @@
-import { Component, ComponentRef, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Product } from '../../Shared/interfaces/product';
 import { NgForm, NgModel } from '@angular/forms';
-import { CartService } from '../../Shared/services/cart.service';
+import { CartService } from '../services/cart.service';
 import { Cart } from '../../Shared/interfaces/cart';
 
 @Component({
@@ -143,8 +143,12 @@ export class SaleComponent implements OnInit, OnChanges, AfterViewInit {
 
   reset(): void {
     if (this.productSet) {
-      this.quantity = 1;
+      if (this.product.quantity == 0) {
       this.discount = null;
+      } else {
+        this.quantity = 1;
+        this.discount = null;
+      }
     }
   }
 

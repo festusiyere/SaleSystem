@@ -1,15 +1,15 @@
 import {
   Component, OnInit, ViewChild, ElementRef, HostListener, ViewChildren,
-  QueryList, AfterViewInit, ChangeDetectorRef, AfterContentChecked
+  QueryList, AfterViewInit, ChangeDetectorRef, AfterContentChecked, ViewContainerRef
 } from '@angular/core';
+
 import { NotifierService } from 'angular-notifier';
-import { SharedModule } from './../../Shared/shared.module';
 
 import { SaleComponent } from '../sale/sale.component';
 import { Cart } from '../../Shared/interfaces/cart';
 import { Product } from '../../Shared/interfaces/product';
-import { ProductService } from '../../Shared/services/product.service';
-import { CartService } from '../../Shared/services/cart.service';
+import { ProductService } from '../../ProductModule/services/product.service';
+import { CartService } from '../services/cart.service';
 import { Record } from '../../Shared/interfaces/record';
 
 @Component({
@@ -19,9 +19,6 @@ import { Record } from '../../Shared/interfaces/record';
 })
 export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecked {
 
-
-  constructor(private product: ProductService, private cdr: ChangeDetectorRef, private cartService: CartService,
-              private notifier: NotifierService) { }
 
   @ViewChild('sidetotal', { static: true }) total: ElementRef;
   @ViewChild('container', { static: true }) container: ElementRef;
@@ -35,11 +32,10 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   sticky = false;
   date: Date;
 
-  // Mutation Observer
-  private mutationObserver: MutationObserver;
-
   // Grand Total
   grandTotal = 0.00;
+
+  invalid = true;
 
   cartDetails: Cart[] = [];
 
@@ -58,10 +54,14 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
     }
   }
 
-  ngOnInit(): void {
-    // console.log((this.document.body.classList));
-    // console.log(this.container);
+  constructor(private product: ProductService, private cdr: ChangeDetectorRef, private cartService: CartService,
+              private notifier: NotifierService, private viewContainerRef: ViewContainerRef) { }
 
+  ngOnInit(): void {
+
+    // const a: ElementRef = this.viewContainerRef;
+
+    // console.log(this.viewContainerRef);
 
     // Gettin Current Date
     this.date = new Date();
@@ -74,6 +74,7 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
     // API Call for Products
     this.getData();
+
   }
 
   ngAfterViewInit(): void {
@@ -88,6 +89,16 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
           const index = this.cartDetails.indexOf(item);
           this.cartDetails.splice(index, 1, val);
         }
+        const zero = this.cartDetails.find((val) => {
+          return val.product.quantity === 0;
+        });
+
+        if (zero === undefined) {
+          this.invalid = false;
+        } else {
+          this.invalid = true;
+        }
+
         this.sumTotal();
       }
     );

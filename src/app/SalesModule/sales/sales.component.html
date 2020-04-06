@@ -6,73 +6,187 @@
 </div>
 
 <div class="main-layout">
-
   <div class="main" #container>
-    <div class="card-container item">
-      <div class="_jd">
-        <h2>
-          Client Cart ({{this.cart.length}})
-        </h2>
 
-        <div class="j_e">
-          {{date | date: 'medium'}}
+    <ng-template [ngIf]="products.length == 0">
+
+      <div class="card-container item">
+        <div class="_jd">
+          <h2>
+            <div class="h-2-5 w-20 loading">
+
+            </div>
+          </h2>
+          <div class="j_e">
+            <div class="h-1-5 w-30 loading">
+
+            </div>
+          </div>
+          <div class="h-1-5 w-40 loading">
+
+          </div>
         </div>
+      </div>
+      
+    </ng-template>
 
-        <div class="checkbox">
-          <input id="c1" type="checkbox">
-          <label for="c1">Select All</label>
+    <ng-template [ngIf]="products.length > 0">
+
+      <div class="card-container item">
+        <div class="_jd">
+          <h2>
+            Client Cart ({{this.cart.length}})
+          </h2>
+
+          <div class="j_e">
+            {{date | date: 'medium'}}
+          </div>
+
+          <div class="checkbox">
+            <input id="c1" type="checkbox">
+            <label for="c1">Select All</label>
+          </div>
         </div>
       </div>
 
-    </div>
+    </ng-template>
 
-    <app-sale *ngFor="let item of cart; index as i" [index]="i" [Products]="products"></app-sale>
+    <ng-template [ngIf]="products.length > 0">
 
-    <div class="add">
-      <button (click)="addSale()">
-        Add
-      </button>
-    </div>
+      <app-sale *ngFor="let item of cart; index as i" [index]="i" [Products]="products"></app-sale>
+
+      <div class="add">
+        <button (click)="addSale()">
+          Add
+        </button>
+      </div>
+
+    </ng-template>
+
+    <ng-template [ngIf]="products.length === 0">
+
+      <div class="card-container item collaps">
+        <div class="prod">
+          <div class="h-1-5 w-100 loading">
+          </div>
+          <div class="total">
+            <div class="h-1-5 w-100 loading">
+
+            </div>
+          </div>
+        </div>
+        <div class="pro-bod">
+          <div class="h-1-5 w-100 loading">
+
+          </div>
+          <div class="h-1-5 w-70 loading">
+
+          </div>
+          <div class="h-1-5 w-50 loading">
+
+          </div>
+          <div class="h-1-5 w-50 loading">
+
+          </div>
+        </div>
+        <div class="pro-footer">
+          <div class="h-1-5 w-100 loading">
+          </div>
+        </div>
+      </div>
+
+    </ng-template>
 
   </div>
 
   <div class="side">
     <div class="side-total" #sidetotal [ngClass]="{'fixed': sticky}">
-      <div class="card-container">
-        <div  class="_sid">
-          <h2> Sale Summary</h2>
-        </div>
-        <div class="_sdeta" >
-          <div *ngFor="let item of sales" >
-            <div class="_dk" *ngIf="item.productSet">
-              <div class="pro_d">
-                {{item.product.name}} ({{item.quantity}})
+
+      <ng-template [ngIf]="products.length > 0">
+
+        <div class="card-container">
+          <div class="_sid">
+            <h2> Sale Summary</h2>
+          </div>
+          <div class="_sdeta">
+            <div *ngFor="let item of sales" [ngClass]="{'bad': item.total == 0}">
+              <div class="_dk" *ngIf="item.productSet">
+                <div class="pro_d">
+                  {{item.product.name}} ({{item.quantity}})
+                </div>
+                <div class="_pro_pr">
+                  ${{item.total}}
+                </div>
               </div>
-              <div class="_pro_pr" >
-                ${{item.total}}
+            </div>
+          </div>
+          <div class="pay">
+            <div class="tt_ot">
+              <div class="tti">
+                <div class="fur">
+                  Total
+                </div>
+                <div class="fke">
+                  ${{grandTotal}}
+                </div>
               </div>
+            </div>
+            <div class="_pa">
+              <button [disabled]="(!cartDetails.length || invalid)? true : false" (click)="sell()" class="red">
+                Make Sale ({{!cartDetails.length? 0 : cartDetails.length }})
+              </button>
             </div>
           </div>
         </div>
 
-        <div class="pay">
-          <div class="tt_ot">
-            <div class="tti">
-              <div class="fur">
-                Total
-              </div>
-              <div class="fke">
-                ${{grandTotal}}
+      </ng-template>
+
+      <ng-template [ngIf]="products.length === 0">
+
+        <div class="card-container">
+          <div class="_sid">
+            <div class="h-2-5 w-100 loading">
+
+            </div>
+          </div>
+          <div class="_sdeta">
+            <div>
+              <div class="_dk">
+                <div class="pro_d">
+                  <div class="h-1-5 w-100 loading">
+
+                  </div>
+                </div>
+                <div class="_pro_pr">
+                  <div class="h-1-5 w-100 loading">
+
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="_pa">
-            <button [disabled]="!cartDetails.length? true : false" (click)="sell()" class="red">
-              Make Sale ({{!cartDetails.length? 0 : cartDetails.length }})
-            </button>
+          <div class="pay">
+            <div class="tt_ot">
+              <div class="tti">
+                <div class="h-2 w-100 loading">
+
+                </div>
+                <div class="fke">
+                  <div class="h-2 w-100 loading">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="_pa">
+              <div class="h-2-5 w-100 loading">
+
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-template>
+
     </div>
   </div>
 </div>

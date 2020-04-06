@@ -1,0 +1,25 @@
+.grid{
+  display: grid;
+  grid-template-columns: 150px 1fr 2fr;
+  gap: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+
+  .left{
+    grid-column: 1/2;
+    font-size: 1.05rem;
+    justify-self: start;
+    font-weight: 700;
+  }
+
+  .right{
+    grid-column: 2/3;
+    font-weight: 500;
+  }
+}
+
+.tt{
+  border-bottom: 2px solid #F5F7FB;
+  padding-bottom: 10px;
+  margin-bottom: 5px;
+}

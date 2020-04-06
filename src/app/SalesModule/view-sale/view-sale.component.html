@@ -1,0 +1,221 @@
+<div class="header">
+  <a [routerLink]="['/sales/view']" title="Back">
+    <div class="back">
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M7 13L1 7L7 1"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12.5 7H3"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  </a>
+  <app-top-bar style="margin-left: auto;"></app-top-bar>
+</div>
+
+<div class="main-layout">
+    <ng-template [ngIf]="sale">
+      <div class="table-header">
+        <div class="title">
+          {{ sale.ref_no }}
+        </div>
+        <div class="je">
+          {{ sale.created_at }}
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="!sale">
+      <div class="table-header">
+        <div class="w-10 h-2-5 loading"></div>
+        <div class="w-20 h-1-5 loading"></div>
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="sale">
+      <div class="table-container">
+        <div class="grid-container">
+          <div class="grid _du">
+            <div class="name head">
+              Details
+            </div>
+            <div class="price head al-r">
+              Price ($)
+            </div>
+            <div class="quantity head al-r">
+              Quantity
+            </div>
+            <div class="sub-total head al-r"  style="padding-left: 30px;">
+              Sub-Total ($)
+            </div>
+          </div>
+          <div class="grid" *ngFor="let item of sale.details">
+            <div class="name">
+              {{item.name}} <span *ngIf="item.discount > 0" class="help" style=""> ({{item.discount}}%) Off </span>
+            </div>
+            <div class="price al-r">
+              {{item.price}}
+            </div>
+            <div class="quantity al-r">
+              {{item.quantity}}
+            </div>
+            <div class="sub-total al-r"  style="padding-left: 30px;">
+              {{item.total}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="!sale">
+      <div class="table-container">
+        <div class="grid-container">
+          <div class="grid">
+            <div class="name">
+              <div class="h-1-5 w-80 loading">
+
+              </div>
+            </div>
+            <div class="price al-r">
+              <div class="h-1-5 w-50 loading">
+
+              </div>
+            </div>
+            <div class="quantity al-r">
+              <div class="h-1-5 w-40 loading">
+
+              </div>
+            </div>
+            <div class="sub-total al-r"  style="padding-left: 30px;">
+              <div class="h-1-5 w-100 loading">
+
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="name">
+              <div class="h-1-5 w-80 loading">
+
+              </div>
+            </div>
+            <div class="price al-r">
+              <div class="h-1-5 w-50 loading">
+
+              </div>
+            </div>
+            <div class="quantity al-r">
+              <div class="h-1-5 w-40 loading">
+
+              </div>
+            </div>
+            <div class="sub-total al-r"  style="padding-left: 30px;">
+              <div class="h-1-5 w-100 loading">
+
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="name">
+              <div class="h-1-5 w-80 loading">
+
+              </div>
+            </div>
+            <div class="price al-r">
+              <div class="h-1-5 w-50 loading">
+
+              </div>
+            </div>
+            <div class="quantity al-r">
+              <div class="h-1-5 w-40 loading">
+
+              </div>
+            </div>
+            <div class="sub-total al-r"  style="padding-left: 30px;">
+              <div class="h-1-5 w-100 loading">
+
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="name">
+              <div class="h-1-5 w-80 loading">
+
+              </div>
+            </div>
+            <div class="price al-r">
+              <div class="h-1-5 w-50 loading">
+
+              </div>
+            </div>
+            <div class="quantity al-r">
+              <div class="h-1-5 w-40 loading">
+
+              </div>
+            </div>
+            <div class="sub-total al-r"  style="padding-left: 30px;">
+              <div class="h-1-5 w-100 loading">
+
+              </div>
+            </div>
+          </div>
+          <div class="grid">
+            <div class="name">
+              <div class="h-1-5 w-80 loading">
+
+              </div>
+            </div>
+            <div class="price al-r">
+              <div class="h-1-5 w-50 loading">
+
+              </div>
+            </div>
+            <div class="quantity al-r">
+              <div class="h-1-5 w-40 loading">
+
+              </div>
+            </div>
+            <div class="sub-total al-r"  style="padding-left: 30px;">
+              <div class="h-1-5 w-100 loading">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+      <div class="grid">
+        <div class="tt">
+          <ng-template [ngIf]="sale">
+            <div class="total">
+              ${{sale.total}}
+            </div>
+          </ng-template>
+          <ng-template [ngIf]="!sale">
+            <div class="total">
+              <div class="h-2-5 w-100 loading">
+
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+
+    <ng-template [ngIf]="!sale">
+
+    </ng-template>
+</div>

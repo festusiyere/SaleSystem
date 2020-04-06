@@ -1,0 +1,28 @@
+.det{
+  padding-left: 40px;
+  width: 30%;
+}
+.ovr{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 12vw;
+}
+.las{
+  width: 15%;
+}
+
+.btw{
+  padding-left: 4rem;
+}
+
+.je{
+  border-radius: 2px;
+  margin-bottom: 0px;
+  font-size: 13px;
+  color: #c7c7c7;
+}
+.inn{
+  display: flex;
+  white-space: nowrap;
+}

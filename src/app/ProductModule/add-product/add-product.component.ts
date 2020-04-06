@@ -4,16 +4,15 @@ import { NotifierService } from 'angular-notifier';
 
 
 import { Product } from '../../Shared/interfaces/product';
-import { ProductService } from '../../Shared/services/product.service';
-import { NgProgressRef, NgProgress } from 'ngx-progressbar';
+import { ProductService } from '../services/product.service';
+import { NgProgressRef } from 'ngx-progressbar';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: 'app-add-product',
+  templateUrl: './add-product.component.html',
+  styleUrls: ['./add-product.component.scss']
 })
-
-export class ProductComponent implements OnInit {
+export class AddProductComponent implements OnInit {
 
   progressRef: NgProgressRef;
 
@@ -25,13 +24,11 @@ export class ProductComponent implements OnInit {
 
   public product: Product;
 
-  constructor(private notifier: NotifierService, private productService: ProductService, private progress: NgProgress) {
+  constructor(private notifier: NotifierService, private productService: ProductService) {
 
   }
 
-  ngOnInit(): void {
-    // this.progressRef = this.progress.ref('myProgress');
-  }
+  ngOnInit(): void {}
 
   startLoading() {
     this.progressRef.start();
@@ -48,12 +45,10 @@ export class ProductComponent implements OnInit {
     this.productService.saveProduct(this.product).subscribe(
       data => {
         this.showSuccessNotification('Product Created');
-        console.log(data);
         this.form.reset();
       },
       error => {
         this.showErrorNotification('An Error Occured!');
-        console.log(error);
       }
     );
   }

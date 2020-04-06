@@ -1,0 +1,134 @@
+<div class="header">
+  <a [routerLink]="['/product/view']" title="Back" >
+    <div class="back">
+      <svg width="20" height="20" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 13L1 7L7 1" stroke="#3D4D6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12.5 7H3" stroke="#3D4D6A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    </a>
+  <app-top-bar style="margin-left: auto;"></app-top-bar>
+</div>
+
+<div class="main-layout">
+  <div class="card-container item">
+    <ng-template [ngIf]="product" >
+      <div class="title tt">
+      {{product.name}}
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="!product" >
+      <div class="w-10 h-2-5 loading">
+
+      </div>
+    </ng-template>
+
+    <ng-template [ngIf]="product" >
+      <div class="grid-container">
+        <div class="grid">
+          <div class="left">
+            Description:
+          </div>
+          <div class="right">
+            {{product.details}}
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left">
+            Cost-Price:
+          </div>
+          <div class="right">
+            {{product.cost}}
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left">
+            Selling-Price:
+          </div>
+          <div class="right">
+            {{product.price}}
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left">
+            Quantity:
+          </div>
+          <div class="right">
+            {{product.quantity}}
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left">
+            Unit:
+          </div>
+          <div class="right">
+            {{product.unit}}
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left">
+            Identifier:
+          </div>
+          <div class="right">
+            {{product.unique_id}}
+          </div>
+        </div>
+      </div>
+      </ng-template>
+
+    <ng-template [ngIf]="!product" >
+      <div class="grid-container">
+        <div class="grid">
+          <div class="left h-1-5 w-80 loading">
+
+          </div>
+          <div class="right h-1-5 w-80 loading">
+
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left h-1-5 w-80 loading">
+
+          </div>
+          <div class="right h-1-5 w-80 loading">
+
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left h-1-5 w-80 loading">
+
+          </div>
+          <div class="right h-1-5 w-80 loading">
+
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left h-1-5 w-80 loading">
+
+          </div>
+          <div class="right h-1-5 w-80 loading">
+
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left h-1-5 w-80 loading">
+
+          </div>
+          <div class="right h-1-5 w-80 loading">
+
+          </div>
+        </div>
+        <div class="grid">
+          <div class="left h-1-5 w-80 loading">
+
+          </div>
+          <div class="right h-1-5 w-80 loading">
+
+          </div>
+        </div>
+      </div>
+      </ng-template>
+
+
+  </div>
+</div>
