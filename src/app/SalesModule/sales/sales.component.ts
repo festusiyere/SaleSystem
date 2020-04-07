@@ -32,6 +32,12 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   sticky = false;
   date: Date;
 
+  private isNearBottom = true;
+
+  private scrollContainer: any;
+
+  show = false;
+
   // Grand Total
   grandTotal = 0.00;
 
@@ -46,6 +52,17 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
+    this.isNearBottom = this.isUserNearBottom();
+
+    const container = this.container.nativeElement.getBoundingClientRect().height;
+    const scrollPos = window.scrollY;
+    const winHeight = window.innerHeight;
+
+    if ((container > winHeight) && (scrollPos > 300)) {
+      this.show = true;
+    } else {
+      this.show = false;
+    }
 
     if (windowScroll >= this.menuPosition) {
       this.sticky = true;
@@ -78,6 +95,16 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   }
 
   ngAfterViewInit(): void {
+
+    this.scrollContainer = this.container.nativeElement;
+
+    // Listening for changes in the sale component
+    this.sales.changes.subscribe(
+      (changes) => {
+        this.onItemElementsChanged();
+      }
+    );
+
     this.cartService.addToCart.subscribe(
       (val) => {
 
@@ -125,6 +152,12 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
     );
   }
 
+  private onItemElementsChanged(): void {
+    if (this.isNearBottom) {
+      this.scrollToBottom();
+    }
+  }
+
   addSale() {
     this.numbers++;
     this.cart.push(this.numbers);
@@ -161,7 +194,7 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
     }
 
     const data: Record = {
-      details : detail,
+      details: detail,
       total: this.grandTotal
     }
 
@@ -182,6 +215,29 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
         this.showErrorNotification(error.message);
       }
     );
+  }
+
+  private scrollToBottom(): void {
+    window.scroll({
+      top: this.scrollContainer.scrollHeight,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  scrollTop(): void{
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  private isUserNearBottom(): boolean {
+    const threshold = 150;
+    const position = window.scrollY + window.innerHeight;
+    const height = document.body.scrollHeight;
+    return position > height - threshold;
   }
 
   public showSuccessNotification(message: string): void {

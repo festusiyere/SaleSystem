@@ -12,6 +12,7 @@ $color1: #FFE379;
   -webkit-transition: width .1s ease,margin .1s ease-out;
   transition: width .1s ease,margin .1s ease-out;
   z-index: 999;
+  user-select: none;
 
   ._head{
     height: 100px;

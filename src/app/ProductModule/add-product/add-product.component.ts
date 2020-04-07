@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 
 
@@ -16,11 +16,14 @@ export class AddProductComponent implements OnInit {
 
   progressRef: NgProgressRef;
 
-  @ViewChild('form', { static: false }) form: NgForm;
+  @ViewChild('form', { static: true }) form: NgForm;
+  @ViewChild('unit', { static: true }) unit: HTMLInputElement;
 
   public units: string[] = [
-    'Cartoon(s)', 'Bags', 'crates', 'piece(s)'
+    'Bag(s)', 'Cartoon(s)', 'Crate(s)', 'Piece(s)'
   ];
+
+  myUnit: string;
 
   public product: Product;
 
@@ -36,6 +39,11 @@ export class AddProductComponent implements OnInit {
 
   completeLoading() {
     this.progressRef.complete();
+  }
+
+  fillUnit(event: any): void{
+    const val = event.target.innerText;
+    this.myUnit = val;
   }
 
   onSubmit() {

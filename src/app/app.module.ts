@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,8 +9,6 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 
-import { ProductModule } from './ProductModule/product.module';
-import { SalesModule } from './SalesModule/sales.module';
 import { SidetoggleDirective } from './directives/sidetoggle.directive';
 
 @NgModule({
@@ -17,14 +16,13 @@ import { SidetoggleDirective } from './directives/sidetoggle.directive';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    SidetoggleDirective
+    SidetoggleDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    BrowserAnimationsModule,
     SharedModule,
-    ProductModule,
-    SalesModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

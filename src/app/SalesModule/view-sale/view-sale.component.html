@@ -68,13 +68,13 @@
               {{item.name}} <span *ngIf="item.discount > 0" class="help" style=""> ({{item.discount}}%) Off </span>
             </div>
             <div class="price al-r">
-              {{item.price}}
+              {{item.price | addComma}}
             </div>
             <div class="quantity al-r">
               {{item.quantity}}
             </div>
             <div class="sub-total al-r"  style="padding-left: 30px;">
-              {{item.total}}
+              {{item.total | addComma}}
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@
         <div class="tt">
           <ng-template [ngIf]="sale">
             <div class="total">
-              ${{sale.total}}
+              ${{sale.total | addComma}}
             </div>
           </ng-template>
           <ng-template [ngIf]="!sale">

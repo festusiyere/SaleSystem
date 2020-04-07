@@ -12,7 +12,7 @@ import { ViewSaleComponent } from './view-sale/view-sale.component';
 @NgModule({
   imports: [
     SharedModule,
-    SalesRoutingModule
+    SalesRoutingModule,
   ],
   declarations: [
     SalesComponent,

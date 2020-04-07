@@ -15,6 +15,28 @@
         Dashboard
       </a>
     </li>
+    <li  [ngClass]="{'open': salesShow}">
+      <a class="nav _jf" data-target="sale" role="button" (click)="toggleSale($event)">
+        Sale
+        <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 12.5L16 7.5L8 12.5" stroke="#3D4D6A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <div id="sale" class="collapse" [ngClass]="{'show': salesShow}">
+        <ul class="collapse-list">
+          <li>
+            <a [routerLink]="['/sales']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" class="nav" id="product">
+              Make Sales
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/sales/view']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" class="nav">
+              View Sales
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
     <li  [ngClass]="{'open': productShow}">
       <a class="nav _jf" data-target="product" role="button" (click)="toggleProduct($event)">
         Product
@@ -37,28 +59,6 @@
           <li>
             <a [routerLink]="['/product/stocks']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" class="nav">
               Product Stock
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li  [ngClass]="{'open': salesShow}">
-      <a class="nav _jf" data-target="sale" role="button" (click)="toggleSale($event)">
-        Sale
-        <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 12.5L16 7.5L8 12.5" stroke="#3D4D6A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
-      <div id="sale" class="collapse" [ngClass]="{'show': salesShow}">
-        <ul class="collapse-list">
-          <li>
-            <a [routerLink]="['/sales']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" class="nav" id="product">
-              Make Sales
-            </a>
-          </li>
-          <li>
-            <a [routerLink]="['/sales/view']" routerLinkActive="nav-active" [routerLinkActiveOptions]="{exact: true}" class="nav">
-              View Sales
             </a>
           </li>
         </ul>

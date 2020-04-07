@@ -10,56 +10,126 @@
     <div class="field">
       <label class="label">Name</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #name="ngModel" required name="name" type="text" placeholder="Display Name of Product">
+        <input
+          autocomplete="off"
+          class="input"
+          ngModel
+          #name="ngModel"
+          required
+          name="name"
+          type="text"
+          placeholder="Display Name of Product"
+        />
       </div>
       <p class="help" *ngIf="!name.valid && name.touched">Enter Product Name</p>
     </div>
     <div class="field">
       <label class="label">Product Details</label>
       <div class="control">
-        <textarea autocomplete="off" class="input" ngModel #details="ngModel" required name="details" type="text" placeholder="Enter details of Product">
-
+        <textarea
+          autocomplete="off"
+          class="input"
+          ngModel
+          #details="ngModel"
+          required
+          name="details"
+          type="text"
+          placeholder="Enter details of Product"
+        >
         </textarea>
       </div>
-      <p class="help" *ngIf="!details.valid && details.touched">Enter your Product Details</p>
+      <p class="help" *ngIf="!details.valid && details.touched">
+        Enter your Product Details
+      </p>
     </div>
 
     <div class="field">
       <label class="label">Cost</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #cost="ngModel" required name="cost" type="number" placeholder="Cost of Product">
+        <input
+          autocomplete="off"
+          class="input"
+          ngModel
+          #cost="ngModel"
+          required
+          name="cost"
+          type="number"
+          placeholder="Cost of Product"
+        />
       </div>
-      <p class="help" *ngIf="!cost.valid && cost.touched">Enter the Cost Price</p>
+      <p class="help" *ngIf="!cost.valid && cost.touched">
+        Enter the Cost Price
+      </p>
     </div>
     <div class="field">
       <label class="label">Price</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #price="ngModel" required name="price" type="number" placeholder="Selling Price of Product">
+        <input
+          autocomplete="off"
+          class="input"
+          ngModel
+          #price="ngModel"
+          required
+          name="price"
+          type="number"
+          value=""
+          placeholder="Selling Price of Product"
+        />
       </div>
-      <p class="help" *ngIf="!price.valid && price.touched">Enter your Selling Price</p>
+      <p class="help" *ngIf="!price.valid && price.touched">
+        Enter your Selling Price
+      </p>
     </div>
     <div class="field">
       <label class="label">Quantity</label>
       <div class="control">
-        <input autocomplete="off" class="input" ngModel #quantity="ngModel" required name="quantity" type="number" placeholder="Quantity">
+        <input
+          autocomplete="off"
+          class="input"
+          ngModel
+          #quantity="ngModel"
+          required
+          name="quantity"
+          type="number"
+          placeholder="Quantity"
+        />
       </div>
-      <p class="help" *ngIf="!quantity.valid && quantity.touched">Enter Quantity</p>
+      <p class="help" *ngIf="!quantity.valid && quantity.touched">
+        Enter Quantity
+      </p>
     </div>
     <div class="field">
       <label class="label">Unit</label>
       <div class="control">
-        <select name="unit" class="form-control" required ngModel #unit="ngModel">
-          <option value="" selected> Select Unit</option>
-          <option *ngFor="let item of units" [value]="item">{{item}}</option>
-        </select>
+        <input
+          type="text"
+          name="unit"
+          class="input"
+          required
+          (focus)="sug.style.display = 'block'"
+          (blur)="sug.style.display = 'none'"
+          [(ngModel)]="myUnit"
+          autocomplete="off"
+          #unit="ngModel"
+        />
+        <div class="sugg" #sug>
+          <div class="aa">
+            Suggestions:
+          </div>
+          <div class="vals">
+            <button class="button danger inline" type="button" (click)="fillUnit($event)" *ngFor="let item of units">
+              {{ item }}
+            </button>
+          </div>
+        </div>
       </div>
       <p class="help" *ngIf="!unit.valid && unit.touched">Select Unit</p>
     </div>
     <div class="field is-grouped is-grouped-right">
-      <button type="submit" class="" [disabled] ="!form.valid">
+      <button type="submit" class="" [disabled]="!form.valid">
         Save
       </button>
-      <a class="button danger" [routerLink]="['/']" >
+      <a class="button danger" [routerLink]="['/']">
         Cancel
       </a>
     </div>

@@ -47,12 +47,24 @@
               {{item.created_at}}
             </td>
             <td class="xY al-r">
-              {{item.total}}
+              {{item.total  | addComma}}
             </td>
             <td class="xY det">
-              <div class="ovr">
-                Name: {{item.details[0].name}}, &nbsp;Price: {{item.details[0].price}}, &nbsp;Quantity:
-                {{item.details[0].quantity}}
+              <div class="ovr" appDetails>
+                <div class="ovrb" *ngFor="let ab of item.details">
+                  Name: {{ab.name}}, &nbsp;Price: {{ab.price | addComma}}, &nbsp;Quantity:
+                  {{ab.quantity}}
+                </div>
+              </div>
+              <div class="ovra" >
+                <div class="ovra1" *ngFor="let ab of item.details">
+                  <div class="a">
+                    {{ab.name}}&nbsp;({{ab.quantity}})
+                  </div>
+                  <div class="b">
+                    {{ab.price | addComma}}
+                  </div>
+                </div>
               </div>
             </td>
           </tr>

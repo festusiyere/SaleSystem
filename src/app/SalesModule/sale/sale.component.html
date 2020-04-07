@@ -16,7 +16,7 @@
         </div>
         <div class="total">
           <span>
-            ${{total}}
+            ${{total | addComma}}
           </span>
         </div>
 
@@ -45,10 +45,10 @@
 
           <div class="_prc">
             <span [ngClass]="{'dsc': discountSet}">
-              ${{product.price}}
+              ${{product.price | addComma}}
             </span>
             <span *ngIf="discountSet">
-              ${{discountPrice}}
+              ${{discountPrice | addComma}}
             </span>
             <span *ngIf="discountSet" [ngClass]="{'help': discountSet}">
               Discounted Price
@@ -108,40 +108,3 @@
 
     </form>
   </div>
-
-<!-- <ng-template [ngIf]="Products.length == 0">
-  <div class="card-container item collaps">
-    <div class="prod">
-      <div class="h-1-5 w-100 loading">
-      </div>
-      <div class="total">
-        <div class="h-1-5 w-100 loading">
-
-        </div>
-      </div>
-
-    </div>
-
-    <div class="pro-bod">
-      <div class="h-1-5 w-100 loading">
-
-      </div>
-
-      <div class="h-1-5 w-70 loading">
-
-      </div>
-
-      <div class="h-1-5 w-50 loading">
-
-      </div>
-      <div class="h-1-5 w-50 loading">
-
-      </div>
-    </div>
-
-    <div class="pro-footer" >
-      <div class="h-1-5 w-100 loading">
-      </div>
-    </div>
-  </div>
-</ng-template> -->

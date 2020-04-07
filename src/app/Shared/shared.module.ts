@@ -11,32 +11,33 @@ import { NgProgressRouterModule } from 'ngx-progressbar/router';
 import { customNotifierOptions, progressBar } from './interfaces/notifier';
 import { TopBarComponent } from '../top-bar/top-bar.component';
 import { DiscountDirective } from '../directives/discount.directive';
+import { AddCommaPipe } from './pipes/add-comma.pipe';
+import { DetailsDirective } from '../SalesModule/Directives/details.directive';
 
 
 @NgModule({
   declarations: [
     TopBarComponent,
     DiscountDirective,
-   ],
+    AddCommaPipe,
+    DetailsDirective
+  ],
   imports: [
-    FormsModule,
-    HttpClientModule,
-    CommonModule,
     NotifierModule.withConfig(customNotifierOptions),
     NgProgressModule.withConfig(progressBar),
-    NgProgressHttpModule,
-    NgProgressRouterModule,
   ],
   exports: [
-    TopBarComponent,
     CommonModule,
+    TopBarComponent,
     FormsModule,
     DiscountDirective,
+    AddCommaPipe,
     HttpClientModule,
     NotifierModule,
     NgProgressModule,
     NgProgressHttpModule,
     NgProgressRouterModule,
+    DetailsDirective
   ]
 })
 

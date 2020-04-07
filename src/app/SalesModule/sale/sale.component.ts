@@ -1,13 +1,16 @@
 import { Component, OnInit, ViewChild, AfterViewInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Product } from '../../Shared/interfaces/product';
 import { NgForm, NgModel } from '@angular/forms';
+
+import { Product } from '../../Shared/interfaces/product';
 import { CartService } from '../services/cart.service';
 import { Cart } from '../../Shared/interfaces/cart';
+import { animateSale } from '../Animations/Animations';
 
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
-  styleUrls: ['./sale.component.scss']
+  styleUrls: ['./sale.component.scss'],
+  animations: animateSale
 })
 export class SaleComponent implements OnInit, OnChanges, AfterViewInit {
 
@@ -55,7 +58,7 @@ export class SaleComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(private cartService: CartService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.Products = changes.Products.currentValue || null;
+    // this.Products = changes.Products.currentValue || null;
   }
 
   ngOnInit(): void {
