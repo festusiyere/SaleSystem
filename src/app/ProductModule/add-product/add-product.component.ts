@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 
@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
   progressRef: NgProgressRef;
 
   @ViewChild('form', { static: true }) form: NgForm;
-  @ViewChild('unit', { static: true }) unit: HTMLInputElement;
+  @ViewChild('unit', { static: true, read: ElementRef }) unit: ElementRef;
 
   public units: string[] = [
     'Bag(s)', 'Cartoon(s)', 'Crate(s)', 'Piece(s)'
@@ -44,6 +44,7 @@ export class AddProductComponent implements OnInit {
   fillUnit(event: any): void{
     const val = event.target.innerText;
     this.myUnit = val;
+    this.unit.nativeElement.focus();
   }
 
   onSubmit() {

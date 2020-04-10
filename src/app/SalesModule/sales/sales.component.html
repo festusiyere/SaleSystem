@@ -43,7 +43,6 @@
         *ngFor="let item of cart; index as i"
         [index]="i"
         [Products]="products"
-        @slide
       ></app-sale>
 
       <div class="add">
@@ -151,16 +150,24 @@
     </div>
   </div>
 
-  <div
-    class="up"
-    *ngIf="show"
-    (click)="scrollTop()"
-  >
+  <div class="up" *ngIf="show" (click)="scrollTop()" @fade>
     <div class="goUp">
-      <svg width="25" height="auto" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 12L15 2L28 12" stroke="#3D4D6A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-            </div>
-    <span class="no">12</span>
+      <svg
+        width="25"
+        height="auto"
+        viewBox="0 0 30 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2 12L15 2L28 12"
+          stroke="#3D4D6A"
+          stroke-width="4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <span class="help no">{{ this.cart.length }}</span>
   </div>
 </div>

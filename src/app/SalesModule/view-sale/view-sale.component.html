@@ -213,9 +213,13 @@
           </ng-template>
         </div>
       </div>
-
+      <button (click)="createComponent('Welcome Foo ! ')">Welcome</button>
+      <button (click)="createComponent('Foo Again ?')">Not Welcome</button>
 
     <ng-template [ngIf]="!sale">
 
     </ng-template>
+
+    <template #messagecontainer>
+    </template>
 </div>

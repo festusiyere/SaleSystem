@@ -7,6 +7,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { ViewSalesComponent } from './view-sales/view-sales.component';
 import { BaseSaleComponent } from './base-sale/base-sale.component';
 import { ViewSaleComponent } from './view-sale/view-sale.component';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
@@ -20,6 +21,8 @@ import { ViewSaleComponent } from './view-sale/view-sale.component';
     ViewSalesComponent,
     BaseSaleComponent,
     ViewSaleComponent,
+    ModalComponent,
   ],
+  entryComponents: [ModalComponent]
 })
 export class SalesModule { }

@@ -95,6 +95,7 @@ button{
   border-radius: 5px;
   cursor: pointer;
   display: inline-flex;
+  user-select: none;
   justify-content: center;
   align-items: center;
   background: #FFE379;
@@ -130,6 +131,7 @@ button, input, optgroup, select, textarea {
   padding: 3px 25px;
   border: none;
   border-radius: 5px;
+  user-select: none;
   display: inline-flex;
   justify-content: center;
   align-items: center;

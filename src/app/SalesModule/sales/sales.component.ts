@@ -11,11 +11,13 @@ import { Product } from '../../Shared/interfaces/product';
 import { ProductService } from '../../ProductModule/services/product.service';
 import { CartService } from '../services/cart.service';
 import { Record } from '../../Shared/interfaces/record';
+import { animateSale } from '../Animations/Animations';
 
 @Component({
   selector: 'app-sales',
   templateUrl: './sales.component.html',
-  styleUrls: ['./sales.component.scss']
+  styleUrls: ['./sales.component.scss'],
+  animations: animateSale
 })
 export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecked {
 

@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProductSale } from 'src/app/Shared/interfaces/productSale';
 import { SaleService } from './../services/sale.service';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-view-sale',
@@ -15,7 +16,9 @@ export class ViewSaleComponent implements OnInit, OnDestroy {
   id: number;
   sub: Subscription;
 
-  constructor(private route: ActivatedRoute, private saleService: SaleService) { }
+  @ViewChild('messagecontainer', { read: ViewContainerRef }) entry: ViewContainerRef;
+
+  constructor(private route: ActivatedRoute, private saleService: SaleService, private resolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
     this.getId();
@@ -40,6 +43,14 @@ export class ViewSaleComponent implements OnInit, OnDestroy {
         this.sale = value;
       }
     );
+  }
+
+  createComponent(message) {
+    this.entry.clear();
+    const factory = this.resolver.resolveComponentFactory(ModalComponent);
+    const componentRef = this.entry.createComponent(factory);
+    componentRef.instance.message = message;
+    componentRef.instance.componentRef = componentRef;
   }
 
 }

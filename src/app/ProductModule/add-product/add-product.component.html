@@ -107,7 +107,7 @@
           class="input"
           required
           (focus)="sug.style.display = 'block'"
-          (blur)="sug.style.display = 'none'"
+          (blur)="!unit.valid?  sug.style.display = 'block' :  sug.style.display = 'none'"
           [(ngModel)]="myUnit"
           autocomplete="off"
           #unit="ngModel"

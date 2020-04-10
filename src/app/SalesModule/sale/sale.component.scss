@@ -5,10 +5,10 @@
   margin-bottom: 5px;
   display: flex;
   align-items: center;
+  user-select: none;
 
   .total{
     margin-left: auto;
-    // color: #2e9cc3;
     letter-spacing: 0;
     font-weight: bold;
     cursor: text;
@@ -87,7 +87,6 @@
       padding: 3px;
       box-shadow: none;
       display: inline;
-      // align-items: center;
       opacity: .8;
 
       &:hover{

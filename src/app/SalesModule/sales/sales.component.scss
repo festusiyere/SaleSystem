@@ -472,6 +472,11 @@
 
   .no{
     position: absolute;
-    display: none;
+    color: #3d4d6a !important;
+    font-weight: bold;
+    top: 30%;
+    right: -33%;
+    font-size: 1.2rem;
+    // display: none;
   }
 }

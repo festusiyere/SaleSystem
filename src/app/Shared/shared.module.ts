@@ -13,7 +13,6 @@ import { TopBarComponent } from '../top-bar/top-bar.component';
 import { DiscountDirective } from '../directives/discount.directive';
 import { AddCommaPipe } from './pipes/add-comma.pipe';
 import { DetailsDirective } from '../SalesModule/Directives/details.directive';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -29,7 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   exports: [
     CommonModule,
-    BrowserAnimationsModule,
     TopBarComponent,
     FormsModule,
     DiscountDirective,
