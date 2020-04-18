@@ -31,9 +31,10 @@
           </div>
 
           <div class="checkbox">
-            <input id="c1" type="checkbox" />
+            <input id="c1" type="checkbox" #c1 (click)="selectAll(c1)">
             <label for="c1">Select All</label>
           </div>
+          <button class="red" *ngIf="c1.checked ==true" (click)="deleteSales()">Delete All</button>
         </div>
       </div>
     </ng-template>

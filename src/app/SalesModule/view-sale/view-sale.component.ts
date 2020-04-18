@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+
 import { ProductSale } from 'src/app/Shared/interfaces/productSale';
 import { SaleService } from './../services/sale.service';
-import { ModalComponent } from '../modal/modal.component';
+import { SalesReverseModalComponent } from '../sales-reverse-modal/sales-reverse-modal.component';
+import { SaleEditModalComponent } from '../sale-edit-modal/sale-edit-modal.component';
 
 @Component({
   selector: 'app-view-sale',
@@ -45,12 +47,22 @@ export class ViewSaleComponent implements OnInit, OnDestroy {
     );
   }
 
-  createComponent(message) {
+  reverseSale(): void{
     this.entry.clear();
-    const factory = this.resolver.resolveComponentFactory(ModalComponent);
+    const factory = this.resolver.resolveComponentFactory(SalesReverseModalComponent);
     const componentRef = this.entry.createComponent(factory);
-    componentRef.instance.message = message;
+    componentRef.instance.sale = this.sale;
     componentRef.instance.componentRef = componentRef;
+
+  }
+
+  updateSale(): void{
+    this.entry.clear();
+    const factory = this.resolver.resolveComponentFactory(SaleEditModalComponent);
+    const componentRef = this.entry.createComponent(factory);
+    componentRef.instance.sale = this.sale;
+    componentRef.instance.componentRef = componentRef;
+
   }
 
 }

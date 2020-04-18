@@ -7,11 +7,16 @@
 
 <div class="main-layout">
   <div class="table-header">
-    <div class="title">
-      Product Stock
+    <div class="tt">
+      <div class="title">
+        Product Stock
+      </div>
+      <div class="je">
+        Stocking and Restocking of Product
+      </div>
     </div>
-    <div class="je">
-      Stocking and Restocking of Product
+    <div class="t1">
+      <button (click)="createPopUp()">Add</button>
     </div>
   </div>
   <div class="table-container">
@@ -86,4 +91,8 @@
       </div>
     </ng-template>
   </div>
+
+  <template #modalcontainer>
+  </template>
+
 </div>

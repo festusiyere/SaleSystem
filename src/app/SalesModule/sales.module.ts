@@ -8,6 +8,8 @@ import { ViewSalesComponent } from './view-sales/view-sales.component';
 import { BaseSaleComponent } from './base-sale/base-sale.component';
 import { ViewSaleComponent } from './view-sale/view-sale.component';
 import { ModalComponent } from './modal/modal.component';
+import { SalesReverseModalComponent } from './sales-reverse-modal/sales-reverse-modal.component';
+import { SaleEditModalComponent } from './sale-edit-modal/sale-edit-modal.component';
 
 
 @NgModule({
@@ -21,8 +23,13 @@ import { ModalComponent } from './modal/modal.component';
     ViewSalesComponent,
     BaseSaleComponent,
     ViewSaleComponent,
-    ModalComponent,
+    SalesReverseModalComponent,
+    SaleEditModalComponent,
   ],
-  entryComponents: [ModalComponent]
+  entryComponents: [
+    ModalComponent,
+    SalesReverseModalComponent,
+    SaleEditModalComponent
+  ]
 })
 export class SalesModule { }

@@ -74,3 +74,36 @@
 
   }
 }
+.pagination{
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px;
+  align-items: center;
+
+  .pagin{
+    height: 2.4rem;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1.7px #DCDEE3;
+    border-radius: 3px;
+    margin: 1px;
+    cursor: pointer;
+
+    &.active{
+    border-color: #FFE379;
+    color: #FFE379;
+    }
+
+
+    &:hover{
+    border: solid 1.7px #2d323b;
+    }
+  }
+
+  .disabled{
+    cursor: not-allowed;
+    opacity: .6;
+  }
+}

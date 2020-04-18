@@ -53,6 +53,7 @@ export class SaleComponent implements OnInit, OnChanges, AfterViewInit {
   quantity = 0;
   total: number;
   discountPrice: number;
+  checked: boolean = false;
 
 
   constructor(private cartService: CartService) { }
@@ -67,6 +68,10 @@ export class SaleComponent implements OnInit, OnChanges, AfterViewInit {
     this.product = this.dummy;
     this.setQuantity();
     this.setTotal();
+
+    this.cartService.check.subscribe(
+      (val) => this.checked = val
+    );
 
     // Subscribing for the change in product so as to populate the fields
     this.name.valueChanges.subscribe(

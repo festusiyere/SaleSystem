@@ -1,0 +1,166 @@
+.modal-overlay
+{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(61, 77, 106, 0.459);
+
+  .modal{
+    padding: 20px 35px;
+    position: relative;
+    background-color: #fff;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    user-select: none;
+    min-width: 500px;
+    box-shadow: 0px 2px 4px rgba(121, 121, 121, 0.98);
+
+    .close{
+      display: inline-flex;
+      cursor: pointer;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+      padding: 5px;
+      position: absolute;
+      top: 7px;
+      right: 7px;
+
+      &:hover svg path{
+        stroke: #FFE379;
+      }
+    }
+
+    .header{
+      border-bottom: 2px solid #F5F7FB;
+      font-weight: bold;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    .footer{
+      padding-top: 10px;
+      margin-top: 10px;
+      border-top: 2px solid #F5F7FB;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+
+  .sco{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 10px 0;
+  }
+
+  .scoc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px 0;
+
+    input{
+      width: unset;
+    }
+  }
+
+  .unit{
+    color: #c7c7c7;
+    margin-left: 10px;
+    height: 2.8rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .counter{
+    display: inline-flex;
+    align-items: center;
+
+    button{
+      background: none;
+      padding: 3px;
+      box-shadow: none;
+
+      & svg{
+        width: 10px;
+        height: 10px;
+      }
+
+      &:hover{
+        // border: solid 1px ;
+        // border-radius: 3px;
+
+        & svg{
+
+          & path{
+            stroke: #FFE379;
+          }
+
+        }
+
+      }
+
+      &:active{
+        // box-shadow:0px 10px 13px -7px #b5cdf8;
+
+        & svg{
+
+          & path{
+            stroke: #ff5a5a;
+          }
+
+        }
+
+      }
+
+      &:disabled, button[disabled]{
+        cursor: not-allowed;
+
+        &:hover{
+          // box-shadow:0px 10px 13px -7px #b5cdf8;
+
+          & svg{
+
+            & path{
+              stroke: initial;
+            }
+
+          }
+
+        }
+      }
+
+
+    }
+
+    input{
+      border: 0;
+      border-bottom:solid 2px #DCDEE3;
+      border-radius: 0;
+      width: 50px;
+      overflow: visible;
+      max-width: 100px;
+      padding: 0;
+      text-align: center;
+      font-weight: lighter;
+
+      &:focus{
+        border-bottom: 2px solid #3d4d6a;
+        border-radius: 0;
+      }
+    }
+
+
+  }
+
+}

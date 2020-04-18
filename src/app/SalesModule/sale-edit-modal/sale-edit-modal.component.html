@@ -1,0 +1,159 @@
+<div class="modal-overlay">
+  <div class="modal" #modal>
+    <div class="close" (click)="destroy()">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 1L1 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M1 1L13 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="header">
+      EditSale
+    </div>
+    <br />
+    <form (ngSubmit)="updateSale()" #form="ngForm">
+      <div class="inn">
+        <div class="form head">
+          <div class="name">
+            Name
+          </div>
+
+          <div class="price">
+            Price
+          </div>
+
+          <div class="quantity">
+            Quantity
+          </div>
+
+          <div class="disc">
+            Discount
+          </div>
+
+          <div class="subTotal">
+            Sub-Total
+          </div>
+
+          <div class="action"></div>
+        </div>
+
+        <div class="row" *ngFor="let item of editedSale.details; index as i">
+          <div class="form">
+            <div class="name">
+              {{ item.name }}
+            </div>
+
+            <div class="price">${{ item.price| addComma }}</div>
+
+            <div class="quantity">
+              <div class="counter" style="margin-left: auto;">
+                <button (click)="decrementCount(i)" type="button">
+                  <svg
+                    width="16"
+                    height="2"
+                    viewBox="0 0 16 2"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1H15"
+                      stroke="#3D4D6A"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <input
+                  type="number"
+                  autocomplete="off"
+                  (blur)="blurCheck(i)"
+                  [name]="'quantity' + i"
+                  [(ngModel)]="item.quantity"
+                  #qty
+                />
+                <button (click)="incrementCount(i)" type="button">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.24927 1.1629V15.1629"
+                      stroke="#3D4D6A"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M1.24927 8.1629H15.2493"
+                      stroke="#3D4D6A"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="disc">
+              <input
+                type="number"
+                [name]="'discount' + i"
+                ngModel
+                [(ngModel)]="item.discount"
+                (blur)="discountCheck(i)"
+                (keyup)="discountCheck(i)"
+              />
+            </div>
+
+            <div class="subTotal">${{ item.total| addComma }}</div>
+
+            <div class="action">
+              <button class="red" (click)="remove(i)">Remove</button>
+            </div>
+          </div>
+        </div>
+        <div class="total-form">
+          <div class="total1">Total:</div>
+          <div class="total">${{ editedSale.total | addComma }}</div>
+        </div>
+      </div>
+      <div class="footer">
+        <button
+          class="red"
+          [disabled]="
+            form.untouched ||
+            editedSale.details.length == 0
+          "
+          type="submit"
+        >
+          Save
+        </button>
+        <button class="danger" (click)="destroy()" type="button">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- (form.pristine &&
+              sale.details.length == editedSale.details.length) -->

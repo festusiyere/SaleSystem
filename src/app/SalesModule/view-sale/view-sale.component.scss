@@ -54,3 +54,15 @@
 .grid:not(._du) div{
   margin-bottom: 10px;
 }
+
+.t1{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  .tt{
+    button{
+      margin: 0 5px;
+    }
+  }
+}

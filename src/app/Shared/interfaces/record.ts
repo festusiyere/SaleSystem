@@ -6,7 +6,7 @@ export interface Record {
 export interface Details{
   id: number;
   name: string;
-  price: string;
+  price: number;
   quantity: number;
   discount: number;
   total: number;

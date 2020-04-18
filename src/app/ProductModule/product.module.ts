@@ -8,6 +8,8 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
 import { ProductStocksComponent } from './product-stocks/product-stocks.component';
 import { ProductStockComponent } from './product-stock/product-stock.component';
+import { ModalComponent } from './modal/modal.component';
+import { ProuctUpdateModalComponent } from './product-stock-modal/modal.component';
 
 
 @NgModule({
@@ -18,10 +20,16 @@ import { ProductStockComponent } from './product-stock/product-stock.component';
     ViewProductsComponent,
     ProductStocksComponent,
     ProductStockComponent,
+    ModalComponent,
+    ProuctUpdateModalComponent
   ],
   imports: [
     SharedModule,
     ProductRoutingModule
+  ],
+  entryComponents: [
+    ModalComponent,
+    ProuctUpdateModalComponent
   ]
 })
 export class ProductModule { }

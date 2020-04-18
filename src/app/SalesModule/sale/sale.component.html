@@ -4,7 +4,7 @@
 
       <div class="prod">
         <div class="checkbox">
-          <input name="checkbox" type="checkbox">
+          <input name="checkbox" [(ngModel)]="checked"  type="checkbox">
         </div>
         <div>
           <select class="select" [disabled]="!Products.length" name="name" [ngModel]="product.id" #name="ngModel"

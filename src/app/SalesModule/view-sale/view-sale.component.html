@@ -31,11 +31,19 @@
 <div class="main-layout">
     <ng-template [ngIf]="sale">
       <div class="table-header">
-        <div class="title">
-          {{ sale.ref_no }}
-        </div>
-        <div class="je">
-          {{ sale.created_at }}
+        <div class="t1">
+          <div>
+            <div class="title">
+              {{ sale.ref_no }}
+            </div>
+            <div class="je">
+              {{ sale.created_at }}
+            </div>
+          </div>
+          <div class="tt">
+            <button class="red" (click)="reverseSale()">Reverse</button>
+            <button (click)="updateSale()">Edit</button>
+          </div>
         </div>
       </div>
     </ng-template>
@@ -213,8 +221,6 @@
           </ng-template>
         </div>
       </div>
-      <button (click)="createComponent('Welcome Foo ! ')">Welcome</button>
-      <button (click)="createComponent('Foo Again ?')">Not Welcome</button>
 
     <ng-template [ngIf]="!sale">
 

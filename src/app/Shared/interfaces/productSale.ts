@@ -1,7 +1,7 @@
 import { Details } from './record';
 
 export interface ProductSale{
-  id: string;
+  id: number;
   details: Details[];
   ref_no: string;
   total: number;

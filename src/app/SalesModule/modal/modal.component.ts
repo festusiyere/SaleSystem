@@ -16,16 +16,16 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  destroyComponent() {
-    this.componentRef.destroy();
-  }
-
   @HostListener('click', ['$event.target'])
   onClick(event: any): void {
     console.log(this.componentRef);
     if (event.classList.contains('modal-overlay')) {
-      this.componentRef.destroy();
+      this.destroy();
     }
+  }
+
+  destroy(): void{
+    this.componentRef.destroy();
   }
 
 }

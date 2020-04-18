@@ -12,6 +12,8 @@ import { ProductService } from '../../ProductModule/services/product.service';
 import { CartService } from '../services/cart.service';
 import { Record } from '../../Shared/interfaces/record';
 import { animateSale } from '../Animations/Animations';
+import { SaleService } from 'src/app/SalesModule/services/sale.service';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-sales',
@@ -24,6 +26,7 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
 
   @ViewChild('sidetotal', { static: true }) total: ElementRef;
   @ViewChild('container', { static: true }) container: ElementRef;
+  @ViewChild('c1', {read: ElementRef }) c1: ElementRef;
   @ViewChildren(SaleComponent) sales: QueryList<SaleComponent>;
 
   // Products from server
@@ -54,6 +57,13 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
   @HostListener('window:scroll', ['$event'])
   handleScroll() {
     const windowScroll = window.pageYOffset;
+
+    if (windowScroll >= this.menuPosition) {
+      this.sticky = true;
+    } else {
+      this.sticky = false;
+    }
+
     this.isNearBottom = this.isUserNearBottom();
 
     const container = this.container.nativeElement.getBoundingClientRect().height;
@@ -66,21 +76,12 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
       this.show = false;
     }
 
-    if (windowScroll >= this.menuPosition) {
-      this.sticky = true;
-    } else {
-      this.sticky = false;
-    }
   }
 
   constructor(private product: ProductService, private cdr: ChangeDetectorRef, private cartService: CartService,
-              private notifier: NotifierService, private viewContainerRef: ViewContainerRef) { }
+              private notifier: NotifierService, private saleService: SaleService) { }
 
   ngOnInit(): void {
-
-    // const a: ElementRef = this.viewContainerRef;
-
-    // console.log(this.viewContainerRef);
 
     // Gettin Current Date
     this.date = new Date();
@@ -165,6 +166,17 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
     this.cart.push(this.numbers);
   }
 
+  deleteSales() {
+    this.sales.forEach(
+      (val) => {
+        if (val.checked) {
+          this.c1.nativeElement.checked = false;
+          this.deleteSale(val.index);
+        }
+      }
+    );
+  }
+
   sumTotal(): void {
     if (!this.cartDetails.length) {
       this.grandTotal = 0.00;
@@ -177,6 +189,15 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
     this.cartDetails.splice(index, 1);
     this.cart.splice(index, 1);
     this.sumTotal();
+  }
+
+  selectAll(element: any) {
+    if (element.checked == true) {
+      this.cartService.check.next(true);
+    } else {
+      this.cartService.check.next(false);
+    }
+
   }
 
   sell(): void {
@@ -200,7 +221,7 @@ export class SalesComponent implements OnInit, AfterViewInit, AfterContentChecke
       total: this.grandTotal
     }
 
-    this.product.saveSale(data).subscribe(
+    this.saleService.saveSales(data).subscribe(
       (result) => {
         this.cartDetails = [];
         this.numbers = 1;

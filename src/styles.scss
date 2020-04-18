@@ -82,6 +82,10 @@ input, .form-control, textarea {
     outline: none;
     border-color: #3D4D6A;
   }
+
+  &:disabled{
+    cursor: not-allowed;
+  }
 }
 
 textarea{

@@ -25,12 +25,15 @@ export class ProductService {
     return this.http.get<Product[]>('/api/product');
   }
 
-  saveSale(data: Record): Observable<Record> {
-    return this.http.post<Record>('/api/sale', data);
-  }
-
   getProduct(id: number): Observable<Product>{
     return this.http.get<Product>('/api/product/' + id);
   }
 
+  deleteProduct(id: number): Observable<any> {
+    return this.http.delete<Product>('/api/product/' + id);
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>('/api/product/' + product.id, product);
+  }
 }

@@ -13,8 +13,18 @@
 <div class="main-layout">
   <div class="card-container item">
     <ng-template [ngIf]="product" >
-      <div class="title tt">
-      {{product.name}}
+      <div class="tt">
+        <div class="title">
+        {{product.name}}
+        </div>
+        <div class="side">
+          <button (click)="editProduct()">
+            Edit
+          </button>
+          <button class="red" (click)="deletPopUp()">
+            Delete
+          </button>
+        </div>
       </div>
     </ng-template>
     <ng-template [ngIf]="!product" >
@@ -131,4 +141,9 @@
 
 
   </div>
+
+
+  <template #messagecontainer>
+  </template>
+
 </div>

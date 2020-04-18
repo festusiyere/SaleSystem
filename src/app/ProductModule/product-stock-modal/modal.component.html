@@ -1,0 +1,168 @@
+<div class="modal-overlay">
+  <div class="modal" #modal>
+    <div class="close" (click)="destroy()">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 1L1 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M1 1L13 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="header">
+      Product Stock
+    </div>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <select
+        class="select"
+        [disabled]="!Products.length"
+        name="name"
+        [ngModel]="product.id"
+        #name="ngModel"
+        required
+      >
+        <option disabled [ngValue]="null">Select Product</option>
+        <option *ngFor="let item of Products" [value]="item.id">{{
+          item.name
+        }}</option>
+      </select>
+
+      <div class="sco">
+        <div class="qty">
+          Enter Quantity:
+        </div>
+        <div class="counter" style="margin-left: auto;">
+          <button (click)="decrementCount()">
+            <svg
+              width="16"
+              height="2"
+              viewBox="0 0 16 2"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1H15"
+                stroke="#3D4D6A"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <input
+            [disabled]="!this.product.id"
+            type="number"
+            autocomplete="off"
+            name="quantity"
+            #qty="ngModel"
+            (blur)="blurCheck(qty)"
+            [(ngModel)]="product.quantity"
+          />
+          <button (click)="incrementCount()">
+            <svg
+              width="17"
+              height="17"
+              viewBox="0 0 17 17"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.24927 1.1629V15.1629"
+                stroke="#3D4D6A"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M1.24927 8.1629H15.2493"
+                stroke="#3D4D6A"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="unit" *ngIf="product.id != null">
+          {{ oldProduct.unit }}
+        </div>
+      </div>
+
+      <div class="scoc">
+        <div class="qty">
+          Cost Price:
+        </div>
+        <input
+          [disabled]="!this.product.id || c1.checked"
+          type="number"
+          autocomplete="off"
+          name="cost"
+          #cost="ngModel"
+          [(ngModel)]="product.cost"
+          required
+        />
+      </div>
+      <div class="prev">
+        <div class="checkbox">
+          <input
+            [disabled]="!this.product.id"
+            id="c1"
+            #c1
+            (change)="changeCost(c1)"
+            type="checkbox"
+          />
+          <label for="c1">Use Previous Cost Price</label>
+        </div>
+      </div>
+
+      <div class="scoc">
+        <div class="qty">
+          Selling Price:
+        </div>
+        <input
+          [disabled]="!this.product.id || c2.checked"
+          type="number"
+          autocomplete="off"
+          name="price"
+          #price="ngModel"
+          [(ngModel)]="product.price"
+          required
+        />
+      </div>
+
+      <div class="prev">
+        <div class="checkbox">
+          <input
+            [disabled]="!this.product.id"
+            id="c2"
+            #c2
+            (change)="changePrice(c2)"
+            type="checkbox"
+          />
+          <label for="c2">Use Previous Selling Price</label>
+        </div>
+      </div>
+
+      <br />
+      <div class="footer">
+        <button [disabled]="!form.valid">Add</button>
+        <button class="danger" (click)="destroy()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
