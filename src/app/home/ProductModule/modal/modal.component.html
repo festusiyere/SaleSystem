@@ -1,0 +1,43 @@
+<div class="modal-overlay">
+  <div class="modal" #modal>
+    <div class="close" (click)="destroy()">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 1L1 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M1 1L13 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="header">
+      Delete Product?
+    </div>
+    <div class="inner1">
+      Please Enter the Unique ID of {{ product.name }} to delete
+    </div>
+    <br>
+    <div class="inner2">
+      <input type="text"  #id="ngModel" ngModel />
+    </div>
+    <br>
+    <div class="footer">
+      <button class="red" [disabled]="!isSame" (click)="deleteProduct()">Delete</button>
+      <button class="danger" (click)="destroy()">Cancel</button>
+    </div>
+  </div>
+</div>

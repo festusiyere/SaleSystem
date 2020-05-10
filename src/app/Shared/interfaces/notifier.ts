@@ -2,16 +2,16 @@ import { NotifierOptions } from 'angular-notifier';
 
 export const customNotifierOptions: NotifierOptions = {
   position: {
-		horizontal: {
-			position: 'middle',
-			distance: 12
-		},
-		vertical: {
-			position: 'bottom',
-			distance: 12,
-			gap: 10
-		}
-	},
+    horizontal: {
+      position: 'middle',
+      distance: 12
+    },
+    vertical: {
+      position: 'bottom',
+      distance: 12,
+      gap: 10
+    }
+  },
   theme: 'material',
   behaviour: {
     autoHide: 5000,

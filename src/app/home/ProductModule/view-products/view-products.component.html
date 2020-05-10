@@ -1,0 +1,107 @@
+<div class="header">
+  <!-- <div class="title">
+    Products
+  </div> -->
+  <app-top-bar style="margin-left: auto;"></app-top-bar>
+</div>
+
+<div class="main-layout">
+  <div class="table-header">
+    <div class="title">
+      Products
+    </div>
+    <div class="je">
+      List of all Products
+    </div>
+  </div>
+  <div class="table-container">
+    <ng-template [ngIf]="products.length != 0">
+      <table>
+        <thead>
+          <th style="padding-left: 30px;">
+            Names
+          </th>
+          <th class="det">
+            Details
+          </th>
+          <th class="al-r">
+            Cost Price ($)
+          </th>
+          <th class="al-r">
+            Selling Price ($)
+          </th>
+          <th class="btw las">
+            Unit
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of products" class="table-row" [routerLink]="['/product/view/'+item.id]">
+            <td class="xY" style="padding-left: 30px;">
+              {{item.name}}
+            </td>
+            <td class="xY det">
+              <div class="ovr">
+                {{item.details}}
+              </div>
+            </td>
+            <td class="xY al-r">
+              {{item.cost | addComma}}
+            </td>
+            <td class="xY al-r">
+              {{item.price | addComma}}
+            </td>
+            <td class="xY btw las">
+              {{item.unit}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <div class="pagin" (click)="prevPage()" [ngClass]="{'disabled': !prevPageUrl}">
+          Prev
+        </div>
+        <div
+          *ngFor="let item of pages; index as i"
+          (click)="setPage(item)"
+          class="pagin"
+          [ngClass]="{'active': item == currentPage}"
+        >
+          {{ item }}
+        </div>
+        <div (click)="nextPage()" class="pagin" [ngClass]="{'disabled': !nextPageUrl}">
+          Next
+        </div>
+      </div>
+    </ng-template>
+    <ng-template [ngIf]="products.length == 0">
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+      <div class="h-1-5 w-100 loading">
+      </div>
+    </ng-template>
+  </div>
+</div>

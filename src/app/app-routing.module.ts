@@ -1,14 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './Home/home.component';
+import { DashboardComponent } from './Home/dashboard/dashboard.component';
+import { BaseAuthComponent } from './auth/base-auth/base-auth.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  {path: 'product', loadChildren: () => import('./ProductModule/product.module').then(m => m.ProductModule)},
-  {path: 'sales', loadChildren: () => import('./SalesModule/sales.module').then(m => m.SalesModule)},
-  {path: 'adjustmentJornal', loadChildren: () => import('./adjustment-jornal/adjustment-jornal.module').then(m => m.AdjustmentJornalModule)}
+  {
+    path: '', component: HomeComponent, children: [
+      {path: '', component: DashboardComponent}
+    ]
+  },
+  {
+    path: '', component: BaseAuthComponent, children: [
+      { path: 'login', component: LoginComponent},
+      {path: 'register', component: RegisterComponent}
+  ] }
 ];
 
 @NgModule({

@@ -1,0 +1,113 @@
+<div class="modal-overlay">
+  <div class="modal" #modal>
+    <div class="close" (click)="destroy()">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M13 1L1 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M1 1L13 13"
+          stroke="#3D4D6A"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="header">Edit {{ product.name }}??</div>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+      <div class="scoc">
+        <div class="qty">
+          Name:
+        </div>
+        <input
+          [disabled]="!this.product.id"
+          type="text"
+          autocomplete="off"
+          name="name"
+          #cost="ngModel"
+          [(ngModel)]="product.name"
+          required
+        />
+      </div>
+
+      <div class="scoc">
+        <div class="qty">
+          Details
+        </div>
+        <textarea
+          autocomplete="off"
+          class="input"
+          [(ngModel)]="product.details"
+          #details="ngModel"
+          required
+          name="details"
+          type="text"
+          placeholder="Enter details of Product"
+        >
+        </textarea>
+      </div>
+
+      <div class="scoc">
+        <div class="qty">
+          Cost Price:
+        </div>
+        <input
+          [disabled]="!this.product.id"
+          type="number"
+          autocomplete="off"
+          name="cost"
+          #cost="ngModel"
+          [(ngModel)]="product.cost"
+          required
+        />
+      </div>
+
+      <div class="scoc">
+        <div class="qty">
+          Selling Price:
+        </div>
+        <input
+          [disabled]="!this.product.id"
+          type="number"
+          autocomplete="off"
+          name="price"
+          #price="ngModel"
+          [(ngModel)]="product.price"
+          required
+        />
+      </div>
+
+      <div class="scoc">
+        <div class="qty">
+          Unit
+        </div>
+        <input
+          [disabled]="!this.product.id"
+          type="text"
+          autocomplete="off"
+          name="unit"
+          #price="ngModel"
+          [(ngModel)]="product.unit"
+          required
+        />
+      </div>
+
+      <br />
+      <div class="footer">
+        <button [disabled]="!form.touched && form.pristine">Update</button>
+        <button class="danger" (click)="destroy()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
